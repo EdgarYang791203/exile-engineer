@@ -9,9 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, reactive, computed } from "vue";
 
-let screen = reactive({});
+let screen: { width: number } = reactive({ width: 0 });
 
 const getWidth = () => {
   screen.width = window.innerWidth || document.documentElement.clientWidth;
