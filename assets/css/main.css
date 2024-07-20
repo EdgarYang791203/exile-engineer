@@ -2,17 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #222;
-  color: white;
-  min-height: 100vh;
+@font-face {
+  font-family: "pop-gothic-cjktc";
+  src: url("https://cdn.jsdelivr.net/gh/max32002/pop-gothic@2.141/webfont/CJK%20TC/PopGothicCjkTc-Regular.woff2")
+    format("woff2");
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@layer base {
+  body {
+    background-color: #222;
+    color: white;
+    min-height: 100vh;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+  }
 
-* {
-  box-sizing: border-box;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
 }

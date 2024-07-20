@@ -15,11 +15,13 @@
   >
     <CanvasBg v-if="!isScreenSM" />
     <img src="~/assets/images/logo.png" alt="logo" class="w-[48px] h-[48px]" />
+    <Navbar />
   </header>
 </template>
 
 <script lang="ts" setup>
 import CanvasBg from "../CanvasBg.vue";
+import Navbar from "../Navbar.vue";
 
 defineProps<{ isScreenSM: boolean }>();
 </script>

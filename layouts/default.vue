@@ -1,7 +1,8 @@
 <template>
   <div class="w-full min-h-screen relative">
     <div
-      class="fixed left-0 top-0 w-full h-full z-[-2] bg-main bg-cover bg-center brightness-[0.3]"
+      class="fixed left-0 top-0 w-full h-full z-[-2] bg-main bg-cover brightness-[0.3]"
+      style="background-position-y: 64px"
     ></div>
     <Header :isScreenSM="isScreenSM" />
     <slot />
