@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center pt-16">
+  <div class="flex flex-col items-center justify-center">
     <div class="py-4">
       <div v-for="chapter in showlist" :key="chapter.chapterId">
         <h1 class="mt-5 text-center text-3xl font-bold text-[#af6025]">
