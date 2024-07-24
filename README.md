@@ -1,7 +1,7 @@
 # exile-engineer
-A POE game walkthrough website.
+A POE game walkthrough website(一個自用的 POE 攻略站).
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Look at the [demo](https://exile-engineer.vercel.app).
 
 ## Setup
 
