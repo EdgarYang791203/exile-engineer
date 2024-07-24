@@ -49,28 +49,17 @@
 
 <script lang="ts" setup>
 import { reactive } from "vue";
-// import { type CookieRef } from "#app";
-import { useCookie } from "#imports";
 import { tasks } from "~/assets/tasks.json";
 
-const savedList = useCookie("todoList");
+const cookie = useCookie("doneList");
 
 let showlist: any[] = reactive([]);
 
 let doneList = ref([]);
 
-function updateShowList() {
-  if (savedList.value) {
-    try {
-      showlist.splice(0, showlist.length, ...JSON.parse(savedList.value));
-    } catch (error) {
-      console.error("Failed to parse savedList:", error);
-      showlist.splice(0, showlist.length);
-    }
-  } else {
-    showlist.splice(0, showlist.length);
-  }
-}
+const saveDoneList = () => {
+  cookie.value = doneList.value.join(",");
+};
 
 const initialList = () => {
   if (tasks && tasks.length) {
@@ -90,7 +79,9 @@ const initialList = () => {
       checkList.unshift(checkbox);
       return { chapterId, title, checkList };
     });
-    if (list && list.length) showlist = list;
+    if (list && list.length) {
+      showlist = list;
+    }
   }
 };
 
@@ -112,6 +103,7 @@ const checkAll = (chapter: number) => {
     } else {
       doneList.value = doneList.value.concat(names);
     }
+    saveDoneList();
   }
 };
 
@@ -121,18 +113,17 @@ const handleCheck = (taskName: string) => {
   } else {
     doneList.value.push(taskName);
   }
+  saveDoneList();
 };
 
-if (savedList.value) {
-  try {
-    showlist = JSON.parse(savedList.value);
-    updateShowList();
-  } catch (error) {
-    initialList();
+initialList();
+
+onMounted(() => {
+  if (cookie) {
+    const saveData = cookie.value.split(",");
+    doneList.value = saveData;
   }
-} else {
-  initialList();
-}
+});
 </script>
 
 <style scoped></style>

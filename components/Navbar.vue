@@ -3,7 +3,7 @@
     <li v-for="page in menu" :key="page.name">
       <NuxtLink
         :to="page.href"
-        class="link block p-3 text-2xl font-bold hover:text-[tomato]"
+        class="link block p-3 text-2xl font-bold text-[#222] md:text-white hover:text-[tomato]"
         :class="{
           'router-link-active': page.href === onRoutes,
           disabled: !page.enable,
