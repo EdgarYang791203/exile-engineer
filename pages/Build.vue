@@ -27,6 +27,15 @@
             <a
               target="_blank"
               rel="noreferrer"
+              href="https://www.youtube.com/watch?v=Ftd9axQuL5wo"
+            >
+              資料來源 Yotuber 賴阿奇
+            </a>
+          </p>
+          <p>
+            <a
+              target="_blank"
+              rel="noreferrer"
               href="https://www.youtube.com/watch?v=gNscxrTy1sM"
             >
               資料來源 Yotuber DS 低欸死
@@ -38,15 +47,6 @@
               class="text-blue-500"
             >
               POB
-            </a>
-          </p>
-          <p>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://www.youtube.com/watch?v=Ftd9axQuL5wo"
-            >
-              資料來源 Yotuber 賴阿奇
             </a>
           </p>
         </div>
