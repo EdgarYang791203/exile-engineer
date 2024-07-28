@@ -63,10 +63,10 @@ import { reactive, ref } from "vue";
 import { tasks } from "~/assets/tasks.json";
 
 useSeoMeta({
-  title: "POE 拓荒 todo list",
-  description: "拓荒 speedrun 看 Exile engineer",
+  title: "Exile engineer POE 拓荒",
+  description: "拓荒 speedrun Exile engineer",
   ogDescription:
-    "拓荒 speedrun 看 Exile engineer (感謝各位 poe 社群 you'll the best)",
+    "拓荒 speedrun Exile engineer (感謝各位 poe 社群 you'll the best)",
   ogTitle: "POE 拓荒完成打勾",
 });
 
