@@ -68,6 +68,7 @@ useSeoMeta({
   ogDescription:
     "拓荒 speedrun Exile engineer (感謝各位 poe 社群 you'll the best)",
   ogTitle: "POE 拓荒完成打勾",
+  googleSiteVerification: "9SF0DnY0VkwDUx0m43hTCwoEDRdIhlaDiW8IhREz6xw",
 });
 
 const cookie = useCookie("doneList");
