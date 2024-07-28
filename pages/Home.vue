@@ -30,7 +30,7 @@
             <label
               class="cursor-pointer text-left text-xl"
               :class="index ? 'text-green-500' : 'text-yellow-500'"
-              :for="checkItem.name"
+              :for="checkItem.id"
               :style="{
                 opacity: isChecked(checkItem.name) ? 0.2 : 1,
                 textDecorationLine: isChecked(checkItem.name)
@@ -119,7 +119,7 @@ const handleCheck = (taskName: string) => {
 initialList();
 
 onMounted(() => {
-  if (cookie) {
+  if (cookie?.value) {
     const saveData = cookie.value.split(",");
     doneList.value = saveData;
   }
