@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <div class="py-4">
+  <div class="w-full">
+    <div class="py-4 flex flex-col justify-center max-w-[1024px] mx-auto">
       <div v-for="chapter in showlist" :key="chapter.chapterId">
-        <h1 class="mt-5 text-center text-3xl font-bold text-[#af6025]">
+        <h2 class="mt-5 text-center text-3xl font-bold text-[#af6025]">
           {{ chapter.title }}
-        </h1>
+        </h2>
         <div v-if="chapter.checkList && chapter.checkList.length">
           <div
             v-for="(checkItem, index) in chapter.checkList"
@@ -42,14 +42,33 @@
             </label>
           </div>
         </div>
+        <div class="pt-3" v-if="chapter.memo && chapter.memo.length">
+          <p
+            v-for="(tip, index) in chapter.memo"
+            :key="`${tip.hashtag}-${index}`"
+            class="text-center"
+          >
+            <span class="text-yellow-500">{{ tip.hashtag }}</span>
+            <span>{{ tip.text }}</span>
+            <img class="max-w-[50%] block mx-auto" :src="tip.img" alt="tip" />
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { tasks } from "~/assets/tasks.json";
+
+useSeoMeta({
+  title: "POE 拓荒 todo list",
+  description: "拓荒 speedrun 看 Exile engineer",
+  ogDescription:
+    "拓荒 speedrun 看 Exile engineer (感謝各位 poe 社群 you'll the best)",
+  ogTitle: "POE 拓荒完成打勾",
+});
 
 const cookie = useCookie("doneList");
 
@@ -64,7 +83,7 @@ const saveDoneList = () => {
 const initialList = () => {
   if (tasks && tasks.length) {
     const list = tasks.map((item, index) => {
-      const { title, content } = item;
+      const { title, content, memo } = item;
       const chapterId = index + 1;
       const checkList = content.map((checkItem, cIndex) => ({
         id: 10 * index + cIndex + 1,
@@ -77,7 +96,7 @@ const initialList = () => {
         text: "一鍵全選",
       };
       checkList.unshift(checkbox);
-      return { chapterId, title, checkList };
+      return { chapterId, title, checkList, memo: memo ? memo : [] };
     });
     if (list && list.length) {
       showlist = list;

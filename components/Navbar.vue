@@ -35,12 +35,12 @@ const menu = ref([
   {
     href: "/",
     name: "輿圖轉型",
-    enable: true,
+    enable: false,
   },
   {
     href: "/",
     name: "輿圖天賦",
-    enable: true,
+    enable: false,
   },
   {
     href: "/",
@@ -63,7 +63,7 @@ const menu = ref([
     enable: false,
   },
   {
-    href: "/",
+    href: "/Tools",
     name: "工具 ",
     enable: true,
   },

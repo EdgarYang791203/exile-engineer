@@ -21,7 +21,9 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{ build: any[]; chapter: string }>();
+const props = withDefaults(defineProps<{ build: any[]; chapter: string }>(), {
+  chapter: "",
+});
 
 const chapterContent = computed(() => {
   if (props.build && props.build.length && props.chapter) {
