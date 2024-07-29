@@ -2,7 +2,10 @@
   <div class="w-full">
     <div class="py-4 flex flex-col justify-center max-w-[1024px] mx-auto">
       <div v-for="chapter in showlist" :key="chapter.chapterId">
-        <h2 class="mt-5 text-center text-3xl font-bold text-[#af6025]">
+        <h2
+          class="mt-5 text-center text-3xl font-bold text-[#af6025]"
+          :id="`Act-${chapter.chapterId}`"
+        >
           {{ chapter.title }}
         </h2>
         <div v-if="chapter.checkList && chapter.checkList.length">

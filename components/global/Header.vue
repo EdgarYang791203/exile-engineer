@@ -16,12 +16,14 @@
     <CanvasBg v-if="!isScreenSM" />
     <img src="~/assets/images/logo.png" alt="logo" class="w-[48px] h-[48px]" />
     <Navbar />
+    <PositionSelect />
   </header>
 </template>
 
 <script lang="ts" setup>
 import CanvasBg from "../CanvasBg.vue";
 import Navbar from "../Navbar.vue";
+import PositionSelect from "../PositionSelect.vue";
 
 defineProps<{ isScreenSM: boolean }>();
 </script>
