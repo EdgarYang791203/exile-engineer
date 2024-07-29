@@ -80,7 +80,8 @@ const selectAct = (activeAct: string) => {
 };
 
 onMounted(() => {
-  if (cookie) chapterActive.value = cookie.value;
+  if (cookie && cookie.value && cookie.value !== "")
+    chapterActive.value = cookie.value;
 });
 </script>
 
