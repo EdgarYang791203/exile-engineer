@@ -7,15 +7,26 @@
       @change="handleSelect($event)"
     >
       <option value="">最頂部</option>
-      <option v-for="(chapter, index) in chapters" :value="chapter">
-        {{ `章節${index + 1}` }}
+      <option v-for="chapter in showchapters" :value="chapter.value">
+        {{ chapter.title }}
       </option>
     </select>
   </div>
 </template>
 
 <script lang="ts" setup>
-const chapters = Array.from({ length: 10 }, (_, i) => `Act-${i + 1}`);
+const initialStore = useInitailStore();
+const { chapters } = storeToRefs(initialStore);
+
+const showchapters = computed(() => {
+  if (chapters?.value) {
+    return chapters.value.map((chapter, index) => ({
+      title: chapter.title,
+      value: `Act-${index + 1}`,
+    }));
+  }
+  return [];
+});
 
 const handleSelect = ($event: any) => {
   const value = $event.target.value;

@@ -62,21 +62,21 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
-import { tasks } from "~/assets/tasks.json";
+const initialStore = useInitailStore();
+const { chapters } = storeToRefs(initialStore);
 
 useSeoMeta({
-  title: "Exile engineer POE 拓荒",
+  title: "流亡工程師(Exile engineer)-POE 拓荒",
   description: "拓荒 speedrun Exile engineer",
   ogDescription:
     "拓荒 speedrun Exile engineer (感謝各位 poe 社群 you'll the best)",
-  ogTitle: "POE 拓荒完成打勾",
+  ogTitle: "POE 拓荒",
   googleSiteVerification: "9SF0DnY0VkwDUx0m43hTCwoEDRdIhlaDiW8IhREz6xw",
 });
 
 const cookie = useCookie("doneList");
 
-let showlist: any[] = reactive([]);
+let showlist = ref([]);
 
 let doneList = ref([]);
 
@@ -85,8 +85,8 @@ const saveDoneList = () => {
 };
 
 const initialList = () => {
-  if (tasks && tasks.length) {
-    const list = tasks.map((item, index) => {
+  if (chapters?.value) {
+    const list = chapters.value.map((item, index) => {
       const { title, content, memo } = item;
       const chapterId = index + 1;
       const checkList = content.map((checkItem, cIndex) => ({
@@ -103,7 +103,7 @@ const initialList = () => {
       return { chapterId, title, checkList, memo: memo ? memo : [] };
     });
     if (list && list.length) {
-      showlist = list;
+      showlist.value = list;
     }
   }
 };
@@ -113,7 +113,8 @@ const isChecked = (name: string) => {
 };
 
 const checkAll = (chapter: number) => {
-  const chapterRef = showlist[chapter - 1];
+  if (!showlist.value) return;
+  const chapterRef = showlist.value[chapter - 1];
   if (chapterRef && chapterRef.checkList) {
     const selectName = `一鍵全選${chapter - 1}`;
 
@@ -139,9 +140,8 @@ const handleCheck = (taskName: string) => {
   saveDoneList();
 };
 
-initialList();
-
 onMounted(() => {
+  initialList();
   if (cookie?.value) {
     const saveData = cookie.value.split(",");
     doneList.value = saveData;

@@ -6,14 +6,14 @@
     <!-- TODO: 章節選擇 -->
     <div class="flex flex-wrap justify-center py-5">
       <span
-        v-for="chapter in chapters"
-        :key="chapter"
+        v-for="chapter in showchapters"
+        :key="chapter.value"
         :class="`cursor-pointer px-5 md:text-2xl ${
-          chapterActive === chapter ? 'text-yellow-500' : 'text-white'
+          chapterActive === chapter.value ? 'text-yellow-500' : 'text-white'
         }`"
-        @click="selectAct(chapter)"
+        @click="selectAct(chapter.value)"
       >
-        {{ chapter }}
+        {{ chapter.title }}
       </span>
     </div>
     <!-- TODO: 章節拓荒 -->
@@ -76,7 +76,18 @@ import { useCookie } from "#imports";
 
 const cookie = useCookie("chapters");
 
-const chapters = Array.from({ length: 8 }, (_, i) => `Act ${i + 1}`);
+const initialStore = useInitailStore();
+const { chapters } = storeToRefs(initialStore);
+
+const showchapters = computed(() => {
+  if (chapters?.value) {
+    return chapters.value.slice(0, 8).map((chapter, index) => ({
+      title: chapter.title,
+      value: `Act ${index + 1}`,
+    }));
+  }
+  return [];
+});
 
 const chapterActive = ref(`Act 1`);
 
