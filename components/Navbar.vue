@@ -5,7 +5,7 @@
         :to="page.href"
         class="link block p-3 text-2xl font-bold text-[#222] md:text-white hover:text-[tomato]"
         :class="{
-          'router-link-active': page.href === onRoutes,
+          'md:text-green-500': page.href === onRoutes,
           disabled: !page.enable,
         }"
       >
@@ -16,10 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-const route = useRoute();
-const onRoutes = computed(() => {
-  return route.path;
-});
+defineProps<{ onRoutes: string }>();
 
 const menu = ref([
   {
@@ -33,32 +30,32 @@ const menu = ref([
     enable: true,
   },
   {
-    href: "/",
+    href: "",
     name: "輿圖轉型",
     enable: false,
   },
   {
-    href: "/",
+    href: "",
     name: "輿圖天賦",
     enable: false,
   },
   {
-    href: "/",
+    href: "",
     name: "寶石",
     enable: false,
   },
   {
-    href: "/",
+    href: "",
     name: "任務",
     enable: false,
   },
   {
-    href: "/",
+    href: "",
     name: "詞綴 ",
     enable: false,
   },
   {
-    href: "/",
+    href: "",
     name: "地圖 ",
     enable: false,
   },

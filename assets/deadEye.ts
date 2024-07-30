@@ -38,7 +38,7 @@ const deadEye = [
         tagClasses: "text-green-500 | text-white",
       },
       {
-        text: "惡意 | (魔力保留 50%) |  病疫之難 | (打王用) |  (Lv24 迷失的愛情)",
+        text: "惡意 | (魔力保留 50%) |  病疫之難 | (打王用) |  (Lv24 第三章節迷失的愛情)",
         tagClasses:
           "text-blue-500 | text-white | text-green-500 | text-white | text-white",
       },

@@ -13,10 +13,12 @@
       )`,
     }"
   >
-    <CanvasBg v-if="!isScreenSM" />
+    <ClientOnly>
+      <CanvasBg v-if="!isScreenSM" />
+    </ClientOnly>
     <img src="~/assets/images/logo.png" alt="logo" class="w-[48px] h-[48px]" />
-    <Navbar />
-    <PositionSelect />
+    <Navbar :onRoutes="onRoutes" />
+    <PositionSelect v-if="onRoutes === '/'" />
   </header>
 </template>
 
@@ -26,6 +28,12 @@ import Navbar from "../Navbar.vue";
 import PositionSelect from "../PositionSelect.vue";
 
 defineProps<{ isScreenSM: boolean }>();
+
+const routes = useRoute();
+
+const onRoutes = computed(() => {
+  return routes.path;
+});
 </script>
 
 <style lang="scss" scoped></style>

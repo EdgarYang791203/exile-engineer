@@ -24,38 +24,38 @@
         <ArticleComponent :build="deadEye" :chapter="chapterActive" />
         <div class="py-4 text-center text-xl text-yellow-500">
           <p>
-            <a
+            <NuxtLink
+              to="https://www.youtube.com/watch?v=Ftd9axQuL5wo"
               target="_blank"
-              rel="noreferrer"
-              href="https://www.youtube.com/watch?v=Ftd9axQuL5wo"
+              external
             >
               資料來源 Yotuber 賴阿奇
-            </a>
+            </NuxtLink>
           </p>
           <p>
-            <a
+            <NuxtLink
+              to="https://www.youtube.com/watch?v=gNscxrTy1sM"
               target="_blank"
-              rel="noreferrer"
-              href="https://www.youtube.com/watch?v=gNscxrTy1sM"
+              external
             >
               資料來源 Yotuber DS 低欸死
-            </a>
-            <a
+            </NuxtLink>
+            <NuxtLink
+              to="https://pobb.in/FDoOQy-vbM8I"
               target="_blank"
-              rel="noreferrer"
-              href="https://pobb.in/FDoOQy-vbM8I"
               class="text-green-500"
+              external
             >
               POB
-            </a>
-            <a
-              href="https://www.pathofexile.com/passive-skill-tree/AAAABgIDdjQ_fXVbr6A4UPph6419elPjvj9sf5YPq_cTn237CdN-YqyXBpgjbIzo1oAiJIt7Yfkz_5NQACaVo4r33fUYwuxLyfGK35j_-Ona_roZipaz5ljN6t742-c6s02SDlzuDn-A0W9RR0kPVsl6f896I_bPCsHVx53DOsSiSVIBJCvnRXzGAgahFfAwfLvjF5q0xUV-h3axEQvir-uvvLCSEjBsCJsmJ53_EPba5-pzDgZwk5ldTipbYeITUI_xZKaNvxa_DY0Y7xbCHF-THwS1wO-SgAW1N0xOn0cGGo-klYm3_QFR2WJapHhKffzFAAxyHqA4sQVQ-iYb477e8v_4-wiWs-6p0W-6GgEkhcIL4ozxJ50IlhbC9bEEtS6iwO8="
+            </NuxtLink>
+            <NuxtLink
+              to="https://www.pathofexile.com/passive-skill-tree/AAAABgIDdjQ_fXVbr6A4UPph6419elPjvj9sf5YPq_cTn237CdN-YqyXBpgjbIzo1oAiJIt7Yfkz_5NQACaVo4r33fUYwuxLyfGK35j_-Ona_roZipaz5ljN6t742-c6s02SDlzuDn-A0W9RR0kPVsl6f896I_bPCsHVx53DOsSiSVIBJCvnRXzGAgahFfAwfLvjF5q0xUV-h3axEQvir-uvvLCSEjBsCJsmJ53_EPba5-pzDgZwk5ldTipbYeITUI_xZKaNvxa_DY0Y7xbCHF-THwS1wO-SgAW1N0xOn0cGGo-klYm3_QFR2WJapHhKffzFAAxyHqA4sQVQ-iYb477e8v_4-wiWs-6p0W-6GgEkhcIL4ozxJ50IlhbC9bEEtS6iwO8="
               target="_blank"
-              rel="noopener noreferrer"
               class="text-blue-500"
+              external
             >
               天賦
-            </a>
+            </NuxtLink>
           </p>
         </div>
       </div>

@@ -1,22 +1,22 @@
 <template>
   <div class="py-4 text-center text-xl text-yellow-500">
     <p class="p-3">
-      <a
+      <NuxtLink
+        to="https://poedb.tw/tw/chinese#CommunityWiki"
         target="_blank"
-        rel="noreferrer"
-        href="https://poedb.tw/tw/chinese#CommunityWiki"
+        external
       >
         流亡編年史中文化(PoeChinese3)
-      </a>
+      </NuxtLink>
     </p>
     <p class="p-3">
-      <a
+      <NuxtLink
+        to="https://poedb.tw/tw/chinese#PIN%E7%A2%BC%E4%B8%AD%E6%96%87%E5%8C%96"
         target="_blank"
-        rel="noreferrer"
-        href="https://poedb.tw/tw/chinese#PIN%E7%A2%BC%E4%B8%AD%E6%96%87%E5%8C%96"
+        external
       >
         流亡編年史中文化(PIN 碼中文化)
-      </a>
+      </NuxtLink>
     </p>
   </div>
 </template>

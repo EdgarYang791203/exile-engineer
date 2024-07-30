@@ -90,12 +90,12 @@ const initialList = () => {
       const { title, content, memo } = item;
       const chapterId = index + 1;
       const checkList = content.map((checkItem, cIndex) => ({
-        id: 10 * index + cIndex + 1,
+        id: 100 * index + cIndex + 1,
         name: `${title}_${cIndex}`,
         text: checkItem,
       }));
       const checkbox = {
-        id: 10 * index,
+        id: 100 * index,
         name: `一鍵全選${index}`,
         text: "一鍵全選",
       };
