@@ -3,11 +3,13 @@
     <li v-for="page in menu" :key="page.name">
       <NuxtLink
         :to="page.href"
-        class="link block p-3 text-2xl font-bold text-[#222] md:text-white hover:text-[tomato]"
-        :class="{
-          'md:text-green-500': page.href === onRoutes,
-          disabled: !page.enable,
-        }"
+        class="link block p-3 text-2xl font-bold text-[#222] hover:text-[tomato]"
+        :class="[
+          `${page.href === onRoutes ? 'md:text-yellow-500' : 'md:text-white'}`,
+          {
+            disabled: !page.enable,
+          },
+        ]"
       >
         <span class="font-pop">{{ page.name }}</span>
       </NuxtLink>

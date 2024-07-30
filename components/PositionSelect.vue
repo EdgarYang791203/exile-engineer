@@ -1,6 +1,6 @@
 <template>
   <div class="pr-3 text-[#222]">
-    <label class="text-white" for="chapterSelect">章節定位：</label>
+    <label class="md:text-white" for="chapterSelect">章節定位：</label>
     <select
       name="chapterSelect"
       id="chapterSelect"
