@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      viewport: "width=500, initial-scale=1",
+      viewport: "width=device-width,initial-scale=1.0",
       title: "POE 拓荒攻略季初更新",
       meta: [
         {
