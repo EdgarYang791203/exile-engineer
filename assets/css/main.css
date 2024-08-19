@@ -31,3 +31,9 @@
     box-sizing: border-box;
   }
 }
+
+@layer components {
+  .arrow {
+    @apply border-0 absolute top-[50%] w-[48px] h-[48px] z-10 bg-transparent;
+  }
+}

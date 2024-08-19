@@ -33,13 +33,13 @@ const menu = ref([
   },
   {
     href: "",
-    name: "輿圖轉型",
+    name: "流派轉型",
     enable: false,
   },
   {
-    href: "",
+    href: "/AtlasPassive",
     name: "輿圖天賦",
-    enable: false,
+    enable: true,
   },
   {
     href: "",
