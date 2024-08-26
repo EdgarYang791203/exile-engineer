@@ -50,7 +50,7 @@
           <p>
             <NuxtLink
               class="p-3 text-2xl font-bold text-yellow-500"
-              to="https://www.youtube.com/watch?v=eWBsKjQzIOo&t=948s"
+              :to="skill.href"
               target="_blank"
               external
             >
@@ -81,16 +81,23 @@ const AtlasPassivePoRecommend: {
   {
     title: "搭配基拉克賺錢天賦",
     recommend: "資料來源 Yotuber Change",
-    href: "https://www.youtube.com/watch?v=eWBsKjQzIOo&t=948s",
+    href: "https://www.youtube.com/watch?v=eWBsKjQzIOo&t=350s",
     img: "/images/kirac.png",
     skillId: "kirac-0",
   },
   {
     title: "新賽季甲蟲洗錢術",
     recommend: "資料來源 Yotuber Howhowgoose 皓皓鵝-遊戲頻道",
-    href: "https://www.youtube.com/watch?v=Y2RWvNOARRc&list=WL&index=37&t=256s",
+    href: "https://www.youtube.com/watch?v=Y2RWvNOARRc",
     img: "/images/scarabs.png",
     skillId: "scarabs-0",
+  },
+  {
+    title: "T17 無腦甲蟲",
+    recommend: "資料來源 Yotuber Howhowgoose 皓皓鵝-遊戲頻道",
+    href: "https://www.youtube.com/watch?v=8AqvnGx75DY&t=225s",
+    img: "/images/scarabs2.png",
+    skillId: "scarabs-1",
   },
 ]);
 
