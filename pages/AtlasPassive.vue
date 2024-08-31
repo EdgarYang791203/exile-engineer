@@ -79,6 +79,13 @@ const AtlasPassivePoRecommend: {
   recommend: string;
 }[] = reactive([
   {
+    title: "花園人",
+    recommend: "資料來源 Yotuber 五边形",
+    href: "https://www.youtube.com/watch?v=yh7Vug4xTIE&t=160s",
+    img: "/images/harvest.png",
+    skillId: "harvest-0",
+  },
+  {
     title: "搭配基拉克賺錢天賦",
     recommend: "資料來源 Yotuber Change",
     href: "https://www.youtube.com/watch?v=eWBsKjQzIOo&t=350s",
@@ -101,6 +108,8 @@ const AtlasPassivePoRecommend: {
   },
 ]);
 
+const cookie = useCookie("passives");
+
 const activeSkill = ref("kirac-0");
 
 const transformStyle = computed(() => {
@@ -116,6 +125,7 @@ const transformStyle = computed(() => {
 const selectAct = (id: string) => {
   if (id) {
     activeSkill.value = id;
+    cookie.value = id;
   }
 };
 
@@ -160,6 +170,11 @@ const imgLink = (href) => {
   const windowReferenceError = window.open("", "skill");
   if (windowReferenceError) windowReferenceError.location.href = href;
 };
+
+onMounted(() => {
+  if (cookie && cookie.value && cookie.value !== "")
+    activeSkill.value = cookie.value;
+});
 </script>
 
 <style scoped></style>
