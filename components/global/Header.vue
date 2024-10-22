@@ -16,7 +16,7 @@
     <ClientOnly>
       <CanvasBg v-if="!isScreenSM" />
     </ClientOnly>
-    <img src="~/assets/images/logo.png" alt="logo" class="w-[48px] h-[48px]" />
+    <img src="~/assets/images/logo.webp" alt="logo" class="w-[48px] h-[48px]" />
     <Navbar :onRoutes="onRoutes" />
     <PositionSelect v-if="onRoutes === '/'" />
   </header>

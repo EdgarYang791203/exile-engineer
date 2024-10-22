@@ -53,7 +53,7 @@
           >
             <span class="text-yellow-500">{{ tip.hashtag }}</span>
             <span>{{ tip.text }}</span>
-            <img
+            <NuxtImg
               class="max-w-[50%] block mx-auto"
               :src="tip.img"
               alt="tip"

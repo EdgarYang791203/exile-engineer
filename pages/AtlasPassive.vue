@@ -57,7 +57,7 @@
               {{ skill.recommend }}
             </NuxtLink>
           </p>
-          <img
+          <NuxtImg
             v-if="skill.img"
             class="inline-block w-[50vw] cursor-pointer"
             :src="skill.img"
@@ -71,8 +71,8 @@
 </template>
 
 <script lang="ts" setup>
-import leftArrow from "@assets/images/left_arrow.png";
-import rightArrow from "@assets/images/right_arrow.png";
+import leftArrow from "@assets/images/left_arrow.webp";
+import rightArrow from "@assets/images/right_arrow.webp";
 
 const AtlasPassivePoRecommend: {
   title: string;

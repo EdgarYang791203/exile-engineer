@@ -21,7 +21,7 @@ export default {
       },
       backgroundImage: {
         none: "none",
-        main: 'url("~/assets/images/bg-poe.jpg")',
+        main: 'url("~/assets/images/bg-poe.webp")',
       },
       colors: ({ colors }) => ({
         inherit: colors.inherit,
