@@ -53,7 +53,12 @@
           >
             <span class="text-yellow-500">{{ tip.hashtag }}</span>
             <span>{{ tip.text }}</span>
-            <img class="max-w-[50%] block mx-auto" :src="tip.img" alt="tip" />
+            <img
+              class="max-w-[50%] block mx-auto"
+              :src="tip.img"
+              alt="tip"
+              loading="lazy"
+            />
           </p>
         </div>
       </div>
@@ -66,11 +71,10 @@ const initialStore = useInitailStore();
 const { chapters } = storeToRefs(initialStore);
 
 useSeoMeta({
-  title: "流亡工程師(Exile engineer)-POE 拓荒",
+  title: "流亡工程師(Exile engineer) POE 拓荒",
+  ogTitle: "流亡工程師(Exile engineer) POE 拓荒",
   description: "拓荒 speedrun Exile engineer",
-  ogDescription:
-    "拓荒 speedrun Exile engineer (感謝各位 poe 社群 you'll the best)",
-  ogTitle: "POE 拓荒",
+  ogDescription: "拓荒 speedrun Exile engineer",
   googleSiteVerification: "9SF0DnY0VkwDUx0m43hTCwoEDRdIhlaDiW8IhREz6xw",
 });
 

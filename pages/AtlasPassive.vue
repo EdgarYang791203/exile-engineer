@@ -24,7 +24,7 @@
         :disabled="isFirstOne"
         @click="prevSkill"
       >
-        <img class="invert" src="/images/left_arrow.png" alt="arrow left" />
+        <img class="invert" :src="leftArrow" alt="arrow left" />
       </button>
       <button
         role="button"
@@ -33,7 +33,7 @@
         :disabled="isLastOne"
         @click="nextSkill"
       >
-        <img class="invert" src="/images/right_arrow.png" alt="arrow right" />
+        <img class="invert" :src="rightArrow" alt="arrow right" />
       </button>
       <!-- 輪播圖 -->
       <div
@@ -71,6 +71,9 @@
 </template>
 
 <script lang="ts" setup>
+import leftArrow from "@assets/images/left_arrow.png";
+import rightArrow from "@assets/images/right_arrow.png";
+
 const AtlasPassivePoRecommend: {
   title: string;
   href: string;
@@ -82,28 +85,28 @@ const AtlasPassivePoRecommend: {
     title: "花園人",
     recommend: "資料來源 Yotuber 五边形",
     href: "https://www.youtube.com/watch?v=yh7Vug4xTIE&t=160s",
-    img: "/images/harvest.png",
+    img: "/images/harvest.webp",
     skillId: "harvest-0",
   },
   {
     title: "搭配基拉克賺錢天賦",
     recommend: "資料來源 Yotuber Change",
     href: "https://www.youtube.com/watch?v=eWBsKjQzIOo&t=350s",
-    img: "/images/kirac.png",
+    img: "/images/kirac.webp",
     skillId: "kirac-0",
   },
   {
     title: "新賽季甲蟲洗錢術",
     recommend: "資料來源 Yotuber Howhowgoose 皓皓鵝-遊戲頻道",
     href: "https://www.youtube.com/watch?v=Y2RWvNOARRc",
-    img: "/images/scarabs.png",
+    img: "/images/scarabs.webp",
     skillId: "scarabs-0",
   },
   {
     title: "T17 無腦甲蟲",
     recommend: "資料來源 Yotuber Howhowgoose 皓皓鵝-遊戲頻道",
     href: "https://www.youtube.com/watch?v=8AqvnGx75DY&t=225s",
-    img: "/images/scarabs2.png",
+    img: "/images/scarabs2.webp",
     skillId: "scarabs-1",
   },
 ]);

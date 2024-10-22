@@ -11,11 +11,11 @@ export default defineNuxtConfig({
             "Exile engineer is a POE game walkthrough website(一個自用的 POE 攻略站)",
         },
         { property: "og:title", content: "POE 拓荒攻略季初更新" },
-        { property: "og:url", content: "http://localhost:3000/" },
+        { property: "og:url", content: "https://exile-engineer.vercel.app/" },
         {
           property: "og:description",
           content:
-            "Exile engineer is a POE game walkthrough website(感謝各位 poe 社群 you'll the best)",
+            "Exile engineer is a POE game walkthrough website(一個自用的 POE 攻略站)",
         },
       ],
     },
@@ -56,5 +56,12 @@ export default defineNuxtConfig({
         global: true,
       },
     ],
+  },
+  vite: {
+    resolve: {
+      alias: {
+        "@assets": "~/assets",
+      },
+    },
   },
 });
