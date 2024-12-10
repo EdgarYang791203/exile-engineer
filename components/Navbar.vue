@@ -1,5 +1,5 @@
 <template>
-  <ul class="flex-1 flex w-9/12 items-center justify-center">
+  <ul flex="~ 1 items-center justify-center" w="9/12">
     <li v-for="page in menu" :key="page.name">
       <NuxtLink
         :to="page.href"

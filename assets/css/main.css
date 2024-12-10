@@ -1,39 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @font-face {
-  font-family: "pop-gothic-cjktc";
+  font-family: 'pop';
   src: url("https://cdn.jsdelivr.net/gh/max32002/pop-gothic@2.141/webfont/CJK%20TC/PopGothicCjkTc-Regular.woff2")
-    format("woff2");
+format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/max32002/pop-gothic@2.141/webfont/CJK%20TC/PopGothicCjkTc-Regular.woff")
+format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
-@layer base {
-  body {
-    background-color: #222;
-    color: white;
-    min-height: 100vh;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-      "Liberation Mono", "Courier New", monospace;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  a.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
+.font-pop {
+  font-family: "pop", sans-serif;
 }
 
-@layer components {
-  .arrow {
-    @apply border-0 absolute top-[50%] w-[48px] h-[48px] z-10 bg-transparent;
-  }
+body {
+  background-color: #222;
+  color: white;
+  min-height: 100vh;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-main {
+  background-image: url('../images/bg-poe.webp');
 }

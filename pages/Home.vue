@@ -1,9 +1,11 @@
 <template>
-  <div class="w-full">
-    <div class="py-4 flex flex-col justify-center max-w-[1024px] mx-auto">
+  <div w="full">
+    <div py="4" flex="~ col justify-center" class="custom-container">
       <div v-for="chapter in showlist" :key="chapter.chapterId">
         <h2
-          class="mt-5 text-center text-3xl font-bold text-[#af6025]"
+          mt="5"
+          text="3xl [#af6025] bold center"
+          font="bold"
           :id="`Act-${chapter.chapterId}`"
         >
           {{ chapter.title }}
@@ -12,14 +14,14 @@
           <div
             v-for="(checkItem, index) in chapter.checkList"
             :data-active="'active_' + checkItem.id"
-            class="flex items-center"
+            flex="~ items-center"
             :key="checkItem.id"
           >
-            <span class="w-12 text-right text-white">
+            <span w="12" text="right white">
               {{ index ? `${chapter.chapterId}-${index}` : "---" }}
             </span>
             <input
-              class="mx-2"
+              mx="2"
               type="checkbox"
               :name="checkItem.name"
               :id="checkItem.id"
@@ -31,30 +33,30 @@
               :checked="isChecked(checkItem.name)"
             />
             <label
-              class="cursor-pointer text-left text-xl"
-              :class="index ? 'text-green-500' : 'text-yellow-500'"
+              text="left xl"
+              class="cursor-pointer"
+              :class="[
+                index ? 'text-green-500' : 'text-yellow-500',
+                { 'line-through-opacity': isChecked(checkItem.name) },
+              ]"
               :for="checkItem.id"
-              :style="{
-                opacity: isChecked(checkItem.name) ? 0.2 : 1,
-                textDecorationLine: isChecked(checkItem.name)
-                  ? 'line-through'
-                  : 'none',
-              }"
             >
               {{ checkItem.text }}
             </label>
           </div>
         </div>
-        <div class="pt-3" v-if="chapter.memo && chapter.memo.length">
+        <div pt="3" v-if="chapter.memo && chapter.memo.length">
           <p
             v-for="(tip, index) in chapter.memo"
             :key="`${tip.hashtag}-${index}`"
-            class="text-center"
+            text="center"
           >
-            <span class="text-yellow-500">{{ tip.hashtag }}</span>
+            <span text="yellow-500">{{ tip.hashtag }}</span>
             <span>{{ tip.text }}</span>
             <NuxtImg
-              class="max-w-[50%] block mx-auto"
+              max-w="50%"
+              block
+              mx="auto"
               :src="tip.img"
               alt="tip"
               loading="lazy"

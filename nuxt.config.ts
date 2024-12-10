@@ -22,13 +22,6 @@ export default defineNuxtConfig({
   },
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
-  css: ["~/assets/css/main.css"],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
   //TS支援
   typescript: {
     strict: false,
@@ -45,7 +38,7 @@ export default defineNuxtConfig({
       });
     },
   },
-  modules: ["@pinia/nuxt", "@nuxt/image"],
+  modules: ["@pinia/nuxt", "@nuxt/image", "@unocss/nuxt"],
   imports: {
     dirs: ["stores"],
   },
@@ -63,5 +56,17 @@ export default defineNuxtConfig({
         "@assets": "~/assets",
       },
     },
+    server: {
+      watch: {
+        usePolling: true, // 在某些 Docker 和文件系統配置中，這可以幫助改善文件變化檢測
+      },
+    },
+  },
+  css: [
+    "~/assets/css/main.css", // 如果你仍有自定義 CSS 文件
+    "@unocss/reset/tailwind-compat.css",
+  ],
+  unocss: {
+    nuxtLayers: true,
   },
 });

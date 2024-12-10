@@ -1,7 +1,11 @@
 <template>
-  <div class="w-full min-h-screen relative">
+  <!-- class="w-full min-h-screen relative" -->
+  <div w="full" min-h="screen" position="relative">
     <div
-      class="fixed left-0 top-0 w-full h-full z-[-2] bg-main bg-cover brightness-[0.3]"
+      position="fixed top-0 left-0 z-[-2]"
+      w="full"
+      h="full"
+      class="bg-main bg-cover brightness-[0.3]"
       style="background-position-y: 64px"
     ></div>
     <Header :isScreenSM="isScreenSM" />
@@ -28,4 +32,6 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import "@unocss/reset/normalize.css";
+</style>
