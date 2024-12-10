@@ -16,11 +16,11 @@
 
 <script lang="ts" setup>
 const initialStore = useInitailStore();
-const { chapters } = storeToRefs(initialStore);
+const { tasks } = storeToRefs(initialStore);
 
 const showchapters = computed(() => {
-  if (chapters?.value) {
-    return chapters.value.map((chapter, index) => ({
+  if (tasks?.value.length) {
+    return tasks.value.map((chapter, index) => ({
       title: chapter.title,
       value: `Act-${index + 1}`,
     }));

@@ -77,11 +77,11 @@ import { useCookie } from "#imports";
 const cookie = useCookie("chapters");
 
 const initialStore = useInitailStore();
-const { chapters } = storeToRefs(initialStore);
+const { tasks } = storeToRefs(initialStore);
 
 const showchapters = computed(() => {
-  if (chapters?.value) {
-    return chapters.value.slice(0, 8).map((chapter, index) => ({
+  if (tasks?.value.length) {
+    return tasks.value.slice(0, 8).map((chapter, index) => ({
       title: chapter.title,
       value: `Act ${index + 1}`,
     }));
