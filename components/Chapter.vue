@@ -1,8 +1,12 @@
 <template>
   <div>
-    <h2 :class="chapter.titleClass" :id="`Act-${chapter.chapterId}`">
+    <component
+      :is="chapter.titleTag"
+      :class="chapter.titleClass"
+      :id="`Act-${chapter.chapterId}`"
+    >
       {{ chapter.title }}
-    </h2>
+    </component>
     <div v-if="chapter.checkList && chapter.checkList.length">
       <div
         v-for="(checkItem, index) in chapter.checkList"
@@ -25,43 +29,32 @@
           "
           :checked="isChecked(checkItem.name)"
         />
-        <label
-          text="left xl"
-          class="cursor-pointer"
+        <component
+          :is="checkItem.textTag"
           :class="[
+            checkItem.textClass,
             index ? 'text-green-500' : 'text-yellow-500',
             { 'line-through-opacity': isChecked(checkItem.name) },
           ]"
           :for="checkItem.id.toString()"
         >
           {{ checkItem.text }}
-        </label>
+        </component>
       </div>
     </div>
     <div pt="3" v-if="chapter.memo && chapter.memo.length">
-      <p
-        v-for="(tip, index) in chapter.memo"
-        :key="`${tip.hashtag}-${index}`"
-        text="center"
-      >
-        <span :class="tip.hashtagClass">{{ tip.hashtag }}</span>
-        <span>{{ tip.text }}</span>
-        <NuxtImg
-          v-if="tip.img"
-          max-w="50%"
-          block
-          mx="auto"
-          :src="tip.img"
-          alt="tip"
-          loading="lazy"
-        />
-      </p>
+      <Memo
+        v-for="(memoItem, index) in chapter.memo"
+        :key="`tip${chapter.chapterId}-${index}`"
+        :memoItem="memoItem"
+      />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { Chapter } from "~/types";
+import Memo from "~/components/Memo.vue";
 
 const props = defineProps<{
   chapter: Chapter;

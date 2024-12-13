@@ -1,9 +1,20 @@
-type CheckItem = {
+export type CheckItem = {
   id: number;
   name: string;
   text: string;
   textTag: string;
   textClass: string;
+};
+
+export type MemoItem = {
+  memoTag: string;
+  memoClass: string;
+  hashtag: string;
+  hashtagClass: string;
+  textTag: string;
+  text: string;
+  textClass: string;
+  img?: string;
 };
 
 export interface Chapter {
@@ -13,11 +24,5 @@ export interface Chapter {
   titleClass: string;
   content: string[];
   checkList?: CheckItem[];
-  memo?: {
-    hashtag: string;
-    hashtagClass: string;
-    text: string;
-    textClass: string;
-    img?: string;
-  }[];
+  memo?: MemoItem[];
 }

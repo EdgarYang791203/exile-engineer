@@ -16,8 +16,12 @@
       ],
       "memo": [
         {
+          "memoTag": "p",
+          "memoClass": "text-center",
+          "hashtagTag": "span",
           "hashtag": "#第一章",
           "hashtagClass": "text-yellow-500",
+          "textTag": "span",
           "text": "水聲之淵走一小段到橋示意",
           "textClass": "",
           "img": "/images/bridge.webp"
