@@ -21,7 +21,7 @@ export const useInitailStore = defineStore("initial", () => {
 function fotmatTasks(list: Chapter[]) {
   if (!list || !list.length) return [];
   const result = list.map((item, index) => {
-    const { title, titleClass, content, memo } = item;
+    const { title, titleTag, titleClass, content, memo } = item;
     const chapterId = index + 1;
     const checkList = content.map((task: string, cIndex: number) => ({
       id: 100 * chapterId + cIndex,
@@ -38,7 +38,14 @@ function fotmatTasks(list: Chapter[]) {
       textClass: "text-left text-xl cursor-pointer text-yellow-500",
     };
     checkList.unshift(checkbox);
-    return { chapterId, title, titleClass, checkList, memo: memo ? memo : [] };
+    return {
+      chapterId,
+      title,
+      titleTag,
+      titleClass,
+      checkList,
+      memo: memo ? memo : [],
+    };
   });
   return result;
 }

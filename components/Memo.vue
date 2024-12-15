@@ -22,8 +22,6 @@ import type { MemoItem } from "~/types/index";
 const props = defineProps<{
   memoItem: MemoItem;
 }>();
-
-console.log(props.memoItem);
 </script>
 
 <style scoped></style>

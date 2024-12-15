@@ -2,8 +2,8 @@
   <div>
     <component
       :is="chapter.titleTag"
-      :class="chapter.titleClass"
       :id="`Act-${chapter.chapterId}`"
+      :class="[chapter.titleClass]"
     >
       {{ chapter.title }}
     </component>
