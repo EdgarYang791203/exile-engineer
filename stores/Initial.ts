@@ -2,13 +2,17 @@ import { defineStore } from "pinia";
 import type { Chapter } from "~/types";
 
 export const useInitailStore = defineStore("initial", () => {
+  const config = useRuntimeConfig();
+
+  const { jsonStorageUrl } = config.public;
+
   const tasks = ref([]);
 
   const fetchTasks = async () => {
-    const res = await fetch("http://localhost:3001/tasks");
+    const res = await fetch(jsonStorageUrl); //"http://localhost:3001/tasks"
     const data = await res.json();
-    if (data && data.length) {
-      tasks.value = fotmatTasks(data);
+    if (data.tasks) {
+      tasks.value = fotmatTasks(data.tasks);
     }
   };
 
