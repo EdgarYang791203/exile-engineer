@@ -1,3 +1,6 @@
+# Ignore the entire .vscode folder
+.vscode/
+
 # Nuxt dev/build outputs
 .output
 .data
