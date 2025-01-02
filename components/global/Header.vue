@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky top-0 z-10 flex h-16 w-full items-center"
+    class="sticky top-0 z-10 rounded-b-lg overflow-hidden"
     :style="{
       backgroundImage: `linear-gradient(
         to top,
@@ -14,11 +14,31 @@
     }"
   >
     <ClientOnly>
-      <CanvasBg v-if="!isScreenSM" />
+      <CanvasBg />
     </ClientOnly>
-    <img src="~/assets/images/logo.webp" alt="logo" class="w-[48px] h-[48px]" />
-    <Navbar :onRoutes="onRoutes" />
-    <PositionSelect v-if="onRoutes === '/'" />
+    <div
+      class="w-full items-center py-2 lg:py-[3px]"
+      flex="~ items-center justify-between lg:justify-center"
+    >
+      <div class="flex items-center lg:block">
+        <button
+          @click="mobileMenuOpen = !mobileMenuOpen"
+          class="i-prime-align-left text-white text-2xl mr-3 lg:hidden"
+        ></button>
+        <img
+          src="~/assets/images/logo.webp"
+          alt="logo"
+          class="w-[48px] h-[48px]"
+        />
+      </div>
+      <Navbar :onRoutes="onRoutes" v-if="!isScreenSM" />
+      <PositionSelect v-if="onRoutes === '/'" />
+    </div>
+    <Navbar
+      :onRoutes="onRoutes"
+      :mobileMenuOpen="mobileMenuOpen"
+      v-if="isScreenSM"
+    />
   </header>
 </template>
 
@@ -28,6 +48,8 @@ import Navbar from "../Navbar.vue";
 import PositionSelect from "../PositionSelect.vue";
 
 defineProps<{ isScreenSM: boolean }>();
+
+const mobileMenuOpen = ref(false);
 
 const routes = useRoute();
 

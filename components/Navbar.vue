@@ -1,11 +1,19 @@
 <template>
-  <ul flex="~ 1 items-center justify-center" w="9/12">
+  <ul
+    flex="1 items-center justify-center col lg:row"
+    w="full lg:9/12"
+    class="overflow-hidden transition-all duration-300 ease-in-out flex"
+    :class="{
+      'h-0 opacity-0 hidden lg:opacity-100 lg:h-auto lg:flex': !mobileMenuOpen,
+      'h-[300px] lg:h-auto opacity-100': mobileMenuOpen,
+    }"
+  >
     <li v-for="page in menu" :key="page.name">
       <NuxtLink
         :to="page.href"
-        class="link block p-3 text-2xl font-bold text-[#222] hover:text-[tomato]"
+        class="link block p-3 text-2xl font-bold hover:text-[tomato]"
         :class="[
-          `${page.href === onRoutes ? 'md:text-yellow-500' : 'md:text-white'}`,
+          `${page.href === onRoutes ? 'text-yellow-500' : 'text-white'}`,
           {
             disabled: !page.enable,
           },
@@ -18,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{ onRoutes: string }>();
+defineProps<{ onRoutes: string; mobileMenuOpen?: boolean }>();
 
 const menu = ref([
   {
@@ -41,26 +49,26 @@ const menu = ref([
     name: "輿圖天賦",
     enable: true,
   },
-  {
-    href: "",
-    name: "寶石",
-    enable: false,
-  },
-  {
-    href: "",
-    name: "任務",
-    enable: false,
-  },
-  {
-    href: "",
-    name: "詞綴 ",
-    enable: false,
-  },
-  {
-    href: "",
-    name: "地圖 ",
-    enable: false,
-  },
+  // {
+  //   href: "",
+  //   name: "寶石",
+  //   enable: false,
+  // },
+  // {
+  //   href: "",
+  //   name: "任務",
+  //   enable: false,
+  // },
+  // {
+  //   href: "",
+  //   name: "詞綴 ",
+  //   enable: false,
+  // },
+  // {
+  //   href: "",
+  //   name: "地圖 ",
+  //   enable: false,
+  // },
   {
     href: "/Tools",
     name: "工具 ",

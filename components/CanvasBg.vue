@@ -1,5 +1,5 @@
 <template>
-  <canvas class="hidden md:block absolute h-full w-full z-[-1]"></canvas>
+  <canvas class="absolute h-full w-full z-[-1]"></canvas>
 </template>
 
 <script setup lang="ts">

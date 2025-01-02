@@ -23,7 +23,7 @@ const getWidth = () => {
 };
 
 const isScreenSM = computed(() => {
-  if (screen && screen.width) return screen.width <= 768;
+  if (screen && screen.width) return screen.width <= 1024;
   return false;
 });
 

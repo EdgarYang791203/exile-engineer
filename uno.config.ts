@@ -1,5 +1,6 @@
 import {
   defineConfig,
+  presetWind,
   presetAttributify,
   presetIcons,
   presetTypography,
@@ -36,8 +37,16 @@ export default defineConfig({
   presets: [
     presetUno(),
     presetAttributify(),
-    presetIcons(),
+    presetIcons({
+      scale: 1.2,
+      warn: true,
+      collections: {
+        prime: () =>
+          import("@iconify-json/prime/icons.json").then((i) => i.default),
+      },
+    }),
     presetTypography(),
+    presetWind(),
   ],
   preflights: [
     {

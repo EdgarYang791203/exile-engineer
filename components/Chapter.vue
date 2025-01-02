@@ -14,7 +14,7 @@
         flex="~ items-center"
         :key="checkItem.id"
       >
-        <span w="12" text="right white">
+        <span w="8 lg:12" text="right white xs lg:xl">
           {{ index ? `${chapter.chapterId}-${index}` : "---" }}
         </span>
         <input
@@ -31,6 +31,9 @@
         />
         <component
           :is="checkItem.textTag"
+          text="sm lg:xl"
+          flex="1 lg:none"
+          p="2 lg:0"
           :class="[
             checkItem.textClass,
             index ? 'text-green-500' : 'text-yellow-500',
