@@ -30,6 +30,10 @@ const isScreenSM = computed(() => {
 onMounted(() => {
   window.addEventListener("resize", getWidth);
 });
+
+onUnmounted(() => {
+  window.removeEventListener("resize", getWidth);
+});
 </script>
 
 <style scoped>
