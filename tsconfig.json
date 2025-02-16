@@ -1,6 +1,7 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
+    "skipLibCheck": true,
     "types": ["@types/node", "unocss", "./types/unocss"]
   }
 }

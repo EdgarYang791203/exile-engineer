@@ -16,6 +16,9 @@
 <script setup lang="ts">
 import { onMounted, reactive, computed } from "vue";
 
+const initialStore = useInitailStore();
+const { fetchTasks } = initialStore;
+
 let screen: { width: number } = reactive({ width: 0 });
 
 const getWidth = () => {
@@ -25,6 +28,10 @@ const getWidth = () => {
 const isScreenSM = computed(() => {
   if (screen && screen.width) return screen.width <= 1024;
   return false;
+});
+
+useAsyncData(async () => {
+  await fetchTasks();
 });
 
 onMounted(() => {

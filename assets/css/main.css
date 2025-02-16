@@ -1,9 +1,9 @@
 @font-face {
-  font-family: 'pop';
+  font-family: "pop";
   src: url("https://cdn.jsdelivr.net/gh/max32002/pop-gothic@2.141/webfont/CJK%20TC/PopGothicCjkTc-Regular.woff2")
-format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/max32002/pop-gothic@2.141/webfont/CJK%20TC/PopGothicCjkTc-Regular.woff")
-format("woff");
+      format("woff2"),
+    url("https://cdn.jsdelivr.net/gh/max32002/pop-gothic@2.141/webfont/CJK%20TC/PopGothicCjkTc-Regular.woff")
+      format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -32,8 +32,14 @@ a.disabled {
 
 * {
   box-sizing: border-box;
+  user-select: none;
 }
 
 .bg-main {
-  background-image: url('../images/bg-poe.webp');
+  background-image: url("../images/bg-poe.webp");
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }

@@ -37,7 +37,7 @@
       </button>
       <!-- 輪播圖 -->
       <div
-        class="silder transition-all absolute w-full flex flex-nowrap"
+        class="silder transition-transform duration-500 ease-in-out absolute w-full flex flex-nowrap"
         :style="{ transform: transformStyle }"
       >
         <div

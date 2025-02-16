@@ -12,6 +12,7 @@
         v-for="(checkItem, index) in chapter.checkList"
         :data-active="'active_' + checkItem.id"
         flex="~ items-center"
+        class="select-text"
         :key="checkItem.id"
       >
         <span w="8 lg:12" text="right white xs lg:xl">
@@ -31,9 +32,7 @@
         />
         <component
           :is="checkItem.textTag"
-          text="sm lg:xl"
-          flex="1 lg:none"
-          p="2 lg:0"
+          class="select-text text-sm lg:text-xl flex-1 lg:flex-none p-2 lg:p-0"
           :class="[
             checkItem.textClass,
             index ? 'text-green-500' : 'text-yellow-500',

@@ -63,7 +63,7 @@ export default defineNuxtConfig({
     },
     server: {
       watch: {
-        usePolling: false, // 在某些 Docker 和文件系統配置中，這可以幫助改善文件變化檢測
+        usePolling: true, // 在某些 Docker 和文件系統配置中，這可以幫助改善文件變化檢測
       },
       proxy: {
         "/db.json": {

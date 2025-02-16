@@ -14,10 +14,9 @@
 </template>
 
 <script lang="ts" setup>
-import Chapter from "@/components/Chapter.vue";
+import Chapter from "~/components/Chapter.vue";
 
 const initialStore = useInitailStore();
-const { fetchTasks } = initialStore;
 const { tasks } = storeToRefs(initialStore);
 
 useSeoMeta({
@@ -54,7 +53,7 @@ const handleCheck = (taskName: string) => {
 };
 
 const checkAll = (chapterId: number) => {
-  if (!chapterList.value.length) return;
+  if (!chapterList?.value.length) return;
   const chapterRef = chapterList.value.find((ch) => ch.chapterId === chapterId);
   if (chapterRef && chapterRef.checkList) {
     const selectName = `一鍵全選${chapterId}`;
@@ -74,7 +73,6 @@ const checkAll = (chapterId: number) => {
 };
 
 onMounted(async () => {
-  await fetchTasks();
   if (cookie?.value) {
     const saveData = cookie.value.split(",");
     doneList.value = saveData;

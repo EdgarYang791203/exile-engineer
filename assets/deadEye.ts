@@ -1,4 +1,4 @@
-const deadEye = [
+const talentData = [
   {
     chapter: "Act 1",
     content: [
@@ -85,4 +85,4 @@ const deadEye = [
   },
 ];
 
-export default deadEye;
+export default talentData;
