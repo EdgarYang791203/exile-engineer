@@ -80,7 +80,6 @@ const talentData = [
         tagClasses: "ml-5 text-green-500 | ml-5 text-blue-500",
       },
     ],
-    images: [],
     memo: [],
   },
   {
@@ -115,7 +114,6 @@ const talentData = [
         tagClasses: "text-red-500 | text-white",
       },
     ],
-    images: [],
     memo: [],
   },
   {
@@ -153,16 +151,10 @@ const talentData = [
     ],
     images: [
       {
-        type: "build",
-        src: "/images/build2.png",
-        alt: "talent",
-        className: "mx-auto mt-4 block",
+        src: "/images/talents/necromancer/later1.png",
       },
       {
-        type: "build",
-        src: "/images/build3.png",
-        alt: "talent",
-        className: "mx-auto mt-4 block",
+        src: "/images/talents/necromancer/later2.png",
       },
     ],
     memo: [],
