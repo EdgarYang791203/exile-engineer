@@ -18,6 +18,16 @@
         {{ memo }}
       </p>
     </div>
+    <div class="text-center" v-if="talentImages && talentImages.length">
+      <NuxtImg
+        class="block mt-4 w-full max-w-[100%] h-auto"
+        v-for="img in talentImages"
+        :key="img.src"
+        :src="img.src"
+        :style="img.style ? img.style : {}"
+        alt="talent"
+      />
+    </div>
   </article>
 </template>
 
@@ -25,6 +35,7 @@
 const props = defineProps<{
   currentBuild: any[];
   chapterMemo: any[];
+  talentImages: any[];
   chapter: string;
 }>();
 

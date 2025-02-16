@@ -21,6 +21,11 @@ const talentData = [
       "章節檢查換藥水洗恢復量，天賦要點三秒回生命藥劑充能防斷水",
       "(可選)凋零之步掛凋零、幻步 => 盾衝",
     ],
+    images: [
+      {
+        src: "/images/talents/deadEye/act1.png",
+      },
+    ],
   },
   {
     chapter: "Act 2",
@@ -48,12 +53,28 @@ const talentData = [
       "如不點魔力專精，技能串一顆 '活栓' (31 等圖書館取得或用買的)",
       "如生存不足須點第二圈保留，除痛苦之捷留著其餘開堅定、優雅、反抗之旗(新版本可能不適)，點異能魔力(吞噬之冠) + 神聖祝福串惡意",
     ],
+    images: [
+      {
+        src: "/images/talents/deadEye/act2.png",
+      },
+    ],
   },
   {
     chapter: "Act 3",
     content: [],
     memo: [
       "跑昇華時可以準備綠色技能去置換彈炸之毒藥(消耗藥劑充能固定)，可以解放雙投射物數量輔助。",
+    ],
+    images: [
+      {
+        src: "/images/talents/deadEye/act3-1.png",
+      },
+      {
+        src: "/images/talents/deadEye/act3-2.png",
+      },
+      {
+        src: "/images/talents/deadEye/act3-3.png",
+      },
     ],
   },
   {
@@ -81,7 +102,56 @@ const talentData = [
       "60 等後使用不朽生命藥劑洗出增加恢復量(66%)及減少恢復率，之後就可單生命藥劑配四瓶功能藥劑使用。",
       "此流派裝備需求少(無法用武器)，只須注意生命抗性換裝。",
     ],
-    images: [],
+  },
+  {
+    chapter: "Act All",
+    content: [
+      {
+        text: "接下來都不用換直到昇華3進圖",
+        tagClasses: "text-white",
+      },
+      {
+        text: "腐蝕毒雨 + 幻影射手 + 虛空操作 + |  效能 +  | 猛毒投射物/撲殺 + |  活栓/賦予",
+        tagClasses:
+          "text-green-500 | text-blue-500 | text-green-500 | text-red-500",
+      },
+      {
+        text: "腐蝕毒雨 + |  砲台輔助  | + 快速攻擊 + |  效能 +  | 猛毒投射物 + 虛空操作 + |  活栓/賦予",
+        tagClasses:
+          "text-green-500 | text-red-500 | text-green-500 | text-blue-500 | text-green-500 | text-red-500",
+      },
+      {
+        text: "閃現射擊 凋零之步 幻步/ | 霜濂之瞬/烈焰衝刺",
+        tagClasses: "text-green-500 | text-blue-500",
+      },
+      {
+        text: "鮮血狂怒 狂怒 + 低接多重投射(選用) | 霜濂之瞬/烈焰衝刺",
+        tagClasses: "text-green-500 | text-blue-500",
+      },
+      {
+        text: "優雅 |  惡意 絕望 |  石化之血",
+        tagClasses: "text-green-500 | text-blue-500 | text-red-500",
+      },
+      {
+        text: "受傷施放 + 不朽怒號 + 持續時間延長 + 活栓",
+        tagClasses: "text-red-500",
+      },
+      {
+        text: "還有位置可放 | 瓦爾迅捷 | 爆發",
+        tagClasses: "text-white | text-green-500 | text-white",
+      },
+    ],
+    images: [
+      {
+        src: "/images/talents/deadEye/later1.png",
+      },
+      {
+        src: "/images/talents/deadEye/later2.png",
+      },
+      {
+        src: "/images/talents/deadEye/later3.png",
+      },
+    ],
   },
 ];
 

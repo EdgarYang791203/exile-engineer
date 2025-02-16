@@ -35,29 +35,22 @@ const talentData = [
         tagClasses: "text-red-500 | text-green-500 | text-blue-500",
       },
       {
-        text: "丟掉 | 冰霜脈衝 | 神聖火舌圖騰 | 烈焰之牆 | 寒霜爆",
+        text: "丟掉 |  冰霜脈衝  |  神聖火舌圖騰  |  烈焰之牆  |  寒霜爆",
         tagClasses:
           "pr-2 | pr-2 text-blue-500 | pr-2 text-red-500 | pr-2 text-blue-500 | text-blue-500",
       },
     ],
     images: [
       {
-        type: "tip",
-        src: "/images/tip1.png",
-        alt: "talent",
-        className: "mx-auto mt-4 block",
+        src: "/images/talents/necromancer/tip1.png",
+        style: { width: "300px" },
       },
       {
-        type: "tip",
-        src: "/images/tip2.png",
-        alt: "talent",
-        className: "mx-auto mt-4 block",
+        src: "/images/talents/necromancer/tip2.png",
+        style: { width: "300px" },
       },
       {
-        type: "build",
-        src: "/images/build1.png",
-        alt: "talent",
-        className: "mx-auto mt-4 block",
+        src: "/images/talents/necromancer/act1.png",
       },
     ],
     memo: [],
@@ -125,55 +118,55 @@ const talentData = [
     images: [],
     memo: [],
   },
-  // {
-  //   chapter: "Default",
-  //   content: [
-  //     {
-  //       text: "洞色連線不夠不用強求",
-  //       tagClasses: "text-right text-3xl",
-  //     },
-  //     {
-  //       text: "打福爾拿旗子 => 開啟礦坑門後",
-  //       tagClasses: "text-white",
-  //     },
-  //     {
-  //       text: "食腐魔像 + 豢養狂熱 + | 癱瘓輔助",
-  //       tagClasses: "text-blue-500 | text-red-500",
-  //     },
-  //     {
-  //       text: "赦免 + | 召喚幻影輔助 + 附加閃電傷害 + 快速施放",
-  //       tagClasses: "text-red-500 | text-blue-500",
-  //     },
-  //     {
-  //       text: "純淨之捷",
-  //       tagClasses: "text-red-500",
-  //     },
-  //     {
-  //       text: "喚醒幽魂 + 召喚生命輔助",
-  //       tagClasses: "text-blue-500",
-  //     },
-  //     {
-  //       text: "霜濂之瞬/ | 重盾衝鋒 or 躍擊 + | 快速攻擊/ | 號召",
-  //       tagClasses:
-  //         "text-blue-500 | text-red-500 | text-green-500 | text-blue-500",
-  //     },
-  //   ],
-  //   images: [
-  //     {
-  //       type: "build",
-  //       src: "/images/build2.png",
-  //       alt: "talent",
-  //       className: "mx-auto mt-4 block",
-  //     },
-  //     {
-  //       type: "build",
-  //       src: "/images/build3.png",
-  //       alt: "talent",
-  //       className: "mx-auto mt-4 block",
-  //     },
-  //   ],
-  //   memo: [],
-  // },
+  {
+    chapter: "Act All",
+    content: [
+      {
+        text: "洞色連線不夠不用強求",
+        tagClasses: "text-right text-3xl",
+      },
+      {
+        text: "打福爾拿旗子 => 開啟礦坑門後",
+        tagClasses: "text-white",
+      },
+      {
+        text: "食腐魔像 + 豢養狂熱 + | 癱瘓輔助",
+        tagClasses: "text-blue-500 | text-red-500",
+      },
+      {
+        text: "赦免 + | 召喚幻影輔助 + 附加閃電傷害 + 快速施放",
+        tagClasses: "text-red-500 | text-blue-500",
+      },
+      {
+        text: "純淨之捷",
+        tagClasses: "text-red-500",
+      },
+      {
+        text: "喚醒幽魂 + 召喚生命輔助",
+        tagClasses: "text-blue-500",
+      },
+      {
+        text: "霜濂之瞬/ | 重盾衝鋒 or 躍擊 + | 快速攻擊/ | 號召",
+        tagClasses:
+          "text-blue-500 | text-red-500 | text-green-500 | text-blue-500",
+      },
+    ],
+    images: [
+      {
+        type: "build",
+        src: "/images/build2.png",
+        alt: "talent",
+        className: "mx-auto mt-4 block",
+      },
+      {
+        type: "build",
+        src: "/images/build3.png",
+        alt: "talent",
+        className: "mx-auto mt-4 block",
+      },
+    ],
+    memo: [],
+  },
 ];
 
 export default talentData;

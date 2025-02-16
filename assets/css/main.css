@@ -43,3 +43,7 @@ a.disabled {
   opacity: 0.5;
   pointer-events: none;
 }
+
+.text-red-500 {
+  color: #f56565;
+}

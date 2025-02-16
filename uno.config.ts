@@ -4,10 +4,11 @@ import {
   presetAttributify,
   presetIcons,
   presetTypography,
-  presetUno,
+  // presetUno,
   transformerDirectives,
   transformerVariantGroup,
 } from "unocss";
+import colors from "tailwindcss/colors";
 
 export default defineConfig({
   shortcuts: {
@@ -33,9 +34,12 @@ export default defineConfig({
         xl: "1920px",
       },
     },
+    colors: {
+      red: colors.red,
+    },
   },
   presets: [
-    presetUno(),
+    // presetUno(),
     presetAttributify(),
     presetIcons({
       scale: 1.2,

@@ -61,11 +61,11 @@
       </div>
     </div>
     <!-- TODO: 章節選擇 -->
-    <div class="flex flex-wrap justify-center py-5">
+    <div class="flex flex-wrap justify-start md:justify-center py-5">
       <span
         v-for="chapter in showchapters"
         :key="chapter.title"
-        :class="`cursor-pointer px-5 md:text-2xl ${
+        :class="`cursor-pointer px-5 pb-2 md:pb-0 md:text-2xl ${
           activeChapter === chapter.value ? 'text-yellow-500' : 'text-white'
         }`"
         @click="selectAct(chapter.value)"
@@ -79,10 +79,14 @@
         <ArticleComponent
           :currentBuild="currentBuild"
           :chapterMemo="chapterMemo"
+          :talentImages="talentImages"
           :chapter="activeChapter"
         />
-        <div class="py-4 text-center text-xl" v-if="currentJobData?.copyright">
-          <p v-for="item in currentJobData.copyright" :key="item.link">
+        <div
+          class="py-4 text-center text-xl"
+          v-if="copyrightData && copyrightData.length"
+        >
+          <p v-for="item in copyrightData" :key="item.link">
             <NuxtLink
               :to="item.link"
               target="_blank"
@@ -104,11 +108,22 @@ import deadEye from "~/assets/deadEye";
 import champion from "~/assets/champion";
 import necromancer from "~/assets/necromancer";
 
+type Copyright = {
+  title: string;
+  link: string;
+  textClass: string;
+};
+
+type Ascendancy = {
+  title: string;
+  id: string;
+  img: string;
+};
+
 type Job = {
   title: string;
   code: string;
-  ascendancy: { title: string; id: string; img: string }[];
-  copyright?: { title: string; link: string; textClass: string }[];
+  ascendancy: Ascendancy[];
 };
 
 const activeJob = ref("");
@@ -117,28 +132,6 @@ const jobs = ref<Job[]>([
   {
     title: "遊俠",
     code: "ranger",
-    copyright: [
-      {
-        title: "資料來源 Yotuber 賴阿奇",
-        link: "https://www.youtube.com/watch?v=Ftd9axQuL5wo",
-        textClass: "text-yellow-500",
-      },
-      {
-        title: "資料來源 Yotuber DS 低欸死",
-        link: "https://www.youtube.com/watch?v=gNscxrTy1sM",
-        textClass: "text-yellow-500",
-      },
-      {
-        title: "POB",
-        link: "https://pobb.in/FDoOQy-vbM8I",
-        textClass: "text-green-500",
-      },
-      {
-        title: "天賦",
-        link: "https://reurl.cc/lNWGzA",
-        textClass: "text-blue-500",
-      },
-    ],
     ascendancy: [
       {
         title: "銳眼",
@@ -230,6 +223,57 @@ const builds = ref({
 
 const activeAscendancy = ref("");
 
+const copyright = ref({
+  deadEye: [
+    {
+      title: "資料來源 Yotuber 賴阿奇",
+      link: "https://www.youtube.com/watch?v=Ftd9axQuL5wo",
+      textClass: "text-yellow-500",
+    },
+    {
+      title: "資料來源 Yotuber DS 低欸死",
+      link: "https://www.youtube.com/watch?v=gNscxrTy1sM",
+      textClass: "text-yellow-500",
+    },
+    {
+      title: "POB",
+      link: "https://pobb.in/FDoOQy-vbM8I",
+      textClass: "text-green-500",
+    },
+    {
+      title: "天賦",
+      link: "https://reurl.cc/lNWGzA",
+      textClass: "text-blue-500",
+    },
+  ],
+  champion: [
+    {
+      title: "資料來源 Yotuber 惡魔貓和幾吉和點點",
+      link: "https://www.youtube.com/watch?v=mCyLm72KHUU&list=WL&index=32&t=451s",
+      textClass: "text-yellow-500",
+    },
+    {
+      title: "資料來源 Yotuber 阿草",
+      link: "https://www.youtube.com/watch?v=PPGGSuMI3QY&list=WL&index=41",
+      textClass: "text-yellow-500",
+    },
+  ],
+  necromancer: [
+    {
+      title: "資料來源 Yotuber 惡魔貓和幾吉和點點",
+      link: "https://www.youtube.com/watch?v=_EPN07rITJs&list=WL&index=33&t=211s",
+      textClass: "text-yellow-500",
+    },
+  ],
+});
+
+const copyrightData = computed(() => {
+  if (activeAscendancy.value && activeAscendancy.value !== "") {
+    return copyright.value[activeAscendancy.value];
+  }
+  return [];
+});
+
 const checkExist = (id: string) => {
   return builds.value.hasOwnProperty(id);
 };
@@ -284,6 +328,24 @@ const chapterMemo = computed(() => {
         (item) => item.chapter === activeChapter.value
       );
       if (chapter && chapter.memo) return chapter.memo;
+    }
+  }
+  return [];
+});
+
+const talentImages = computed(() => {
+  if (
+    currentBuild.value &&
+    currentBuild.value.length &&
+    activeAscendancy.value &&
+    activeChapter.value
+  ) {
+    const target = builds.value[activeAscendancy.value];
+    if (target) {
+      const chapter = target.find(
+        (item) => item.chapter === activeChapter.value
+      );
+      if (chapter && chapter.images) return chapter.images;
     }
   }
   return [];
