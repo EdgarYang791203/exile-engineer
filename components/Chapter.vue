@@ -12,7 +12,7 @@
         v-for="(checkItem, index) in chapter.checkList"
         :data-active="'active_' + checkItem.id"
         flex="~ items-center"
-        class="select-text"
+        class="select-text mb-2"
         :key="checkItem.id"
       >
         <span w="8 lg:12" text="right white xs lg:xl">
@@ -23,6 +23,7 @@
           type="checkbox"
           :name="checkItem.name"
           :id="checkItem.id.toString()"
+          class="hidden"
           @change="
             index === 0
               ? emit('checkAll', checkItem.id)
@@ -30,9 +31,16 @@
           "
           :checked="isChecked(checkItem.name)"
         />
+        <label
+          class="w-[18px] h-[18px] border-yellow-500 border-1 rounded-[3px] ml-2 mr-4 inline-block check relative cursor-pointer"
+          :class="{
+            'bg-transparent border-none checked': isChecked(checkItem.name),
+          }"
+          :for="checkItem.id.toString()"
+        ></label>
         <component
           :is="checkItem.textTag"
-          class="select-text text-sm lg:text-xl flex-1 lg:flex-none p-2 lg:p-0"
+          class="select-text text-sm lg:text-xl flex-1 lg:flex-none lg:px-[5px] lg:py-0 pr-[5px] md:pr-0 rounded-[4px] hover:bg-transparent md:hover:bg-gray-800"
           :class="[
             checkItem.textClass,
             index ? 'text-green-500' : 'text-yellow-500',

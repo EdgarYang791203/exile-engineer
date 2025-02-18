@@ -14,19 +14,18 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, computed } from "vue";
-
 const initialStore = useInitailStore();
 const { fetchTasks } = initialStore;
 
-let screen: { width: number } = reactive({ width: 0 });
+const screen = ref<{ width: number }>({ width: 0 });
 
 const getWidth = () => {
-  screen.width = window.innerWidth || document.documentElement.clientWidth;
+  screen.value.width =
+    window.innerWidth || document.documentElement.clientWidth;
 };
 
 const isScreenSM = computed(() => {
-  if (screen && screen.width) return screen.width <= 1024;
+  if (screen.value && screen.value.width) return screen.value.width <= 1024;
   return false;
 });
 
@@ -35,6 +34,7 @@ useAsyncData(async () => {
 });
 
 onMounted(() => {
+  getWidth();
   window.addEventListener("resize", getWidth);
 });
 

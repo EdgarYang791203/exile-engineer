@@ -22,8 +22,8 @@
     >
       <div class="flex items-center lg:block">
         <button
-          @click="mobileMenuOpen = !mobileMenuOpen"
-          class="i-prime-align-left text-white text-2xl mr-3 lg:hidden"
+          @click="handleMobileMenu"
+          class="i-prime-align-left text-white text-2xl mx-3 lg:hidden"
         ></button>
         <img
           src="~/assets/images/logo.webp"
@@ -31,12 +31,17 @@
           class="w-[48px] h-[48px]"
         />
       </div>
-      <Navbar :onRoutes="onRoutes" v-if="!isScreenSM" />
+      <Navbar
+        :onRoutes="onRoutes"
+        :mobileMenuOpen="true"
+        v-if="!isScreenSM && initialized"
+      />
       <PositionSelect v-if="onRoutes === '/'" />
     </div>
     <Navbar
       :onRoutes="onRoutes"
       :mobileMenuOpen="mobileMenuOpen"
+      @handleMobileMenu="handleMobileMenu"
       v-if="isScreenSM"
     />
   </header>
@@ -49,12 +54,26 @@ import PositionSelect from "../PositionSelect.vue";
 
 defineProps<{ isScreenSM: boolean }>();
 
+const initialized = ref(false);
+
 const mobileMenuOpen = ref(false);
+
+const handleMobileMenu = () => {
+  if (mobileMenuOpen.value) {
+    mobileMenuOpen.value = false;
+  } else {
+    mobileMenuOpen.value = true;
+  }
+};
 
 const routes = useRoute();
 
 const onRoutes = computed(() => {
   return routes.path;
+});
+
+onMounted(() => {
+  initialized.value = true;
 });
 </script>
 

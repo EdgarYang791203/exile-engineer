@@ -18,6 +18,7 @@
             disabled: !page.enable,
           },
         ]"
+        @click="emit('handleMobileMenu')"
       >
         <span class="font-pop">{{ page.name }}</span>
       </NuxtLink>
@@ -26,7 +27,9 @@
 </template>
 
 <script lang="ts" setup>
-defineProps<{ onRoutes: string; mobileMenuOpen?: boolean }>();
+defineProps<{ onRoutes: string; mobileMenuOpen: boolean }>();
+
+const emit = defineEmits(["handleMobileMenu"]);
 
 const menu = ref([
   {

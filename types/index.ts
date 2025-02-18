@@ -26,3 +26,7 @@ export interface Chapter {
   checkList?: CheckItem[];
   memo?: MemoItem[];
 }
+
+interface Window {
+  MSStream?: any;
+}

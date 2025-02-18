@@ -9,7 +9,7 @@ export const useInitailStore = defineStore("initial", () => {
   const tasks = ref([]);
 
   const fetchTasks = async () => {
-    const res = await fetch(jsonStorageUrl); //"http://localhost:3001/tasks"
+    const res = await fetch(jsonStorageUrl);
     const data = await res.json();
     if (data.tasks) {
       tasks.value = fotmatTasks(data.tasks);
