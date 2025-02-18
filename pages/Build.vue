@@ -281,7 +281,6 @@ const checkExist = (id: string) => {
 const selectAscendancy = (ascendancyId: string) => {
   const exist = checkExist(ascendancyId);
   if (exist) {
-    console.log(ascendancyId);
     activeAscendancy.value = ascendancyId;
   }
 };
