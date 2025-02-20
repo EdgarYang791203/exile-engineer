@@ -1,24 +1,91 @@
 import { defineStore } from "pinia";
 import type { Chapter } from "~/types";
 
+type Copyright = {
+  title: string;
+  link: string;
+  textClass: string;
+};
+
+type Ascendancy = {
+  title: string;
+  id: string;
+  img: string;
+};
+
+type Job = {
+  title: string;
+  code: string;
+  ascendancy: Ascendancy[];
+};
+
+type Build = {
+  [key: string]: {
+    chapter: string;
+    content: { title: string; tagClasses: string }[];
+    memo?: string[];
+    images?: any[];
+  }[];
+};
+
+type Branch = {
+  builds: Build | [];
+  jobs: Job[] | [];
+  tasks: Chapter[] | [];
+  copyright: Copyright[] | [];
+};
+
 export const useInitailStore = defineStore("initial", () => {
-  const config = useRuntimeConfig();
+  // const config = useRuntimeConfig();
 
-  const { jsonStorageUrl } = config.public;
+  // const { jsonStorageUrl } = config.public;
 
-  const tasks = ref([]);
+  const branchData = ref<Branch>({
+    builds: [],
+    jobs: [],
+    tasks: [],
+    copyright: [],
+  });
 
-  const fetchTasks = async () => {
-    const res = await fetch(jsonStorageUrl);
-    const data = await res.json();
-    if (data.tasks) {
-      tasks.value = fotmatTasks(data.tasks);
+  // const tasks = ref([]);
+
+  // const fetchTasks = async () => {
+  //   const res = await fetch(jsonStorageUrl);
+  //   const data = await res.json();
+  //   if (data.tasks) {
+  //     tasks.value = fotmatTasks(data.tasks);
+  //   }
+  // };
+
+  const builds = computed(() => branchData.value.builds);
+
+  const jobs = computed(() => branchData.value.jobs);
+
+  const copyright = computed(() => {
+    if (branchData.value.copyright) {
+      return branchData.value.copyright;
     }
+    return [];
+  });
+
+  const setBranchData = (data: Branch) => {
+    branchData.value = data;
   };
 
+  const tasks = computed(() => {
+    if (branchData.value.tasks) {
+      return fotmatTasks(branchData.value.tasks);
+    }
+    return [];
+  });
+
   return {
+    branchData,
     tasks,
-    fetchTasks,
+    builds,
+    jobs,
+    copyright,
+    setBranchData,
   };
 });
 

@@ -14,8 +14,10 @@
 </template>
 
 <script setup lang="ts">
+import type { Chapter } from "~/types";
+
 const initialStore = useInitailStore();
-const { fetchTasks } = initialStore;
+const { setBranchData } = initialStore;
 
 const screen = ref<{ width: number }>({ width: 0 });
 
@@ -29,9 +31,34 @@ const isScreenSM = computed(() => {
   return false;
 });
 
-useAsyncData(async () => {
-  await fetchTasks();
-});
+const config = useRuntimeConfig();
+
+const { jsonStorageUrl } = config.public;
+
+type Copyright = {
+  title: string;
+  link: string;
+  textClass: string;
+};
+
+interface DataResponse {
+  builds: any;
+  jobs: any[];
+  tasks: Chapter[];
+  copyright: Copyright[];
+}
+
+if (!import.meta.env.SSR) {
+  const { data: branch, error } = await useLazyAsyncData("webInitial", () =>
+    $fetch(jsonStorageUrl)
+  );
+
+  watchEffect(() => {
+    if (branch.value) {
+      setBranchData(branch.value as DataResponse);
+    }
+  });
+}
 
 onMounted(() => {
   getWidth();

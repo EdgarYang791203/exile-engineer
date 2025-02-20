@@ -1,7 +1,7 @@
 <template>
   <div class="h-full w-full">
     <h1 class="h-auto w-full py-4 text-center text-2xl text-yellow-300">
-      卡葛爾拓荒者 3.25
+      卡葛爾拓荒者 3.25.4(閃回聯盟)
     </h1>
     <div class="flex flex-wrap justify-center">
       <h2 class="w-full text-center text-xl font-bold">職業</h2>
@@ -103,11 +103,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
-import deadEye from "~/assets/deadEye";
-import champion from "~/assets/champion";
-import necromancer from "~/assets/necromancer";
-
 type Copyright = {
   title: string;
   link: string;
@@ -126,73 +121,12 @@ type Job = {
   ascendancy: Ascendancy[];
 };
 
-const activeJob = ref("");
+const initialStore = useInitailStore();
+const jobs = toRefs(initialStore).jobs as Ref<Job[]>;
+const builds = toRefs(initialStore).builds as Ref<any[]>;
+const copyright = toRefs(initialStore).copyright as Ref<Copyright[]>;
 
-const jobs = ref<Job[]>([
-  {
-    title: "遊俠",
-    code: "ranger",
-    ascendancy: [
-      {
-        title: "銳眼",
-        id: "deadEye",
-        img: "/images/ascendancies/deadeye.png",
-      },
-      {
-        title: "追獵者",
-        id: "pathfinder",
-        img: "/images/ascendancies/pathfinder.webp",
-      },
-      {
-        title: "守望者",
-        id: "warden",
-        img: "/images/ascendancies/warden.png",
-      },
-    ],
-  },
-  {
-    title: "女巫",
-    code: "witch",
-    ascendancy: [
-      {
-        title: "死靈師",
-        id: "necromancer",
-        img: "/images/ascendancies/necromancer.png",
-      },
-      {
-        title: "元素使",
-        id: "elementalist",
-        img: "/images/ascendancies/elementalist.png",
-      },
-      {
-        title: "秘術家",
-        id: "occultist",
-        img: "/images/ascendancies/occultist.png",
-      },
-    ],
-  },
-  {
-    title: "決鬥者",
-    code: "duelist",
-    ascendancy: [
-      {
-        title: "冠軍",
-        id: "champion",
-        img: "/images/ascendancies/champion.png",
-      },
-      {
-        title: "處刑者",
-        id: "slayer",
-        img: "/images/ascendancies/slayer.png",
-      },
-      {
-        title: "衛士",
-        id: "gladiator",
-        img: "/images/ascendancies/gladiator.png",
-      },
-    ],
-  },
-]);
+const activeJob = ref("");
 
 const selectJob = (jobCode: string) => {
   if (jobCode) {
@@ -202,7 +136,7 @@ const selectJob = (jobCode: string) => {
 
 const currentJobData = computed<Job | null>(() => {
   if (activeJob.value && activeJob.value !== "" && jobs.value.length) {
-    return jobs.value.find((b) => b.code === activeJob.value) || null;
+    return jobs.value.find((job) => job.code === activeJob.value) || null;
   }
   return null;
 });
@@ -215,57 +149,7 @@ const showAscendancy = computed(() => {
   return [];
 });
 
-const builds = ref({
-  deadEye: deadEye,
-  champion: champion,
-  necromancer: necromancer,
-});
-
 const activeAscendancy = ref("");
-
-const copyright = ref({
-  deadEye: [
-    {
-      title: "資料來源 Yotuber 賴阿奇",
-      link: "https://www.youtube.com/watch?v=Ftd9axQuL5wo",
-      textClass: "text-yellow-500",
-    },
-    {
-      title: "資料來源 Yotuber DS 低欸死",
-      link: "https://www.youtube.com/watch?v=gNscxrTy1sM",
-      textClass: "text-yellow-500",
-    },
-    {
-      title: "POB",
-      link: "https://pobb.in/FDoOQy-vbM8I",
-      textClass: "text-green-500",
-    },
-    {
-      title: "天賦",
-      link: "https://reurl.cc/lNWGzA",
-      textClass: "text-blue-500",
-    },
-  ],
-  champion: [
-    {
-      title: "資料來源 Yotuber 惡魔貓和幾吉和點點",
-      link: "https://www.youtube.com/watch?v=mCyLm72KHUU&list=WL&index=32&t=451s",
-      textClass: "text-yellow-500",
-    },
-    {
-      title: "資料來源 Yotuber 阿草",
-      link: "https://www.youtube.com/watch?v=PPGGSuMI3QY&list=WL&index=41",
-      textClass: "text-yellow-500",
-    },
-  ],
-  necromancer: [
-    {
-      title: "資料來源 Yotuber 惡魔貓和幾吉和點點",
-      link: "https://www.youtube.com/watch?v=_EPN07rITJs&list=WL&index=33&t=211s",
-      textClass: "text-yellow-500",
-    },
-  ],
-});
 
 const copyrightData = computed(() => {
   if (activeAscendancy.value && activeAscendancy.value !== "") {
@@ -350,7 +234,7 @@ const talentImages = computed(() => {
   return [];
 });
 
-watchEffect(() => {
+watch(activeJob, (newVal) => {
   if (showAscendancy.value && showAscendancy.value.length) {
     activeAscendancy.value = showAscendancy.value[0].id;
   }
@@ -360,17 +244,9 @@ watchEffect(() => {
   }
 });
 
-onMounted(() => {
-  if (showchapters.value && showchapters.value.length) {
-    activeChapter.value = showchapters.value[0].value;
-  }
-
-  if (jobs.value && jobs.value.length) {
+watchEffect(() => {
+  if (jobs.value && jobs.value.length && !activeJob.value) {
     activeJob.value = jobs.value[0].code;
-  }
-
-  if (showAscendancy.value && showAscendancy.value.length) {
-    activeAscendancy.value = showAscendancy.value[0].id;
   }
 });
 </script>

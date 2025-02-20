@@ -52,6 +52,10 @@ a.disabled {
   background-color: #2d3748;
 }
 
+.text-blue-500 {
+  color: #4299e1;
+}
+
 .check::before {
   top: 0;
   left: 0;
