@@ -1,10 +1,7 @@
 <template>
   <div class="h-full w-full">
-    <h1 class="h-auto w-full py-4 text-center text-2xl text-yellow-300">
-      卡葛爾拓荒者 3.25.4(閃回聯盟)
-    </h1>
     <div class="flex flex-wrap justify-center">
-      <h2 class="w-full text-center text-xl font-bold">職業</h2>
+      <h2 class="w-full text-center text-xl font-bold">職業選擇</h2>
       <!-- TODO: 職業 -->
       <div
         v-for="job in jobs"
@@ -30,7 +27,7 @@
         </span>
       </div>
       <!-- TODO: 昇華 -->
-      <h2 class="w-full text-center text-xl font-bold">昇華</h2>
+      <h2 class="w-full text-center text-xl font-bold">昇華選擇</h2>
       <div class="flex flex-wrap justify-center">
         <div
           v-for="ascendancy in showAscendancy"

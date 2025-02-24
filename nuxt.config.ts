@@ -3,19 +3,47 @@ export default defineNuxtConfig({
   app: {
     head: {
       viewport: "width=device-width,initial-scale=1.0",
-      title: "POE 拓荒攻略季初更新",
+      title: "流亡工程師(Exile engineer) POE 拓荒",
       meta: [
         {
           name: "description",
-          content:
-            "Exile engineer is a POE game walkthrough website(一個自用的 POE 攻略站)",
+          content: "拓荒 speedrun Exile engineer",
         },
-        { property: "og:title", content: "POE 拓荒攻略季初更新" },
+        {
+          property: "og:title",
+          content: "流亡工程師(Exile engineer) POE 拓荒",
+        },
         { property: "og:url", content: "https://exile-engineer.vercel.app/" },
         {
           property: "og:description",
-          content:
-            "Exile engineer is a POE game walkthrough website(一個自用的 POE 攻略站)",
+          content: "拓荒 speedrun Exile engineer",
+        },
+        {
+          name: "google-site-verification",
+          content: "9SF0DnY0VkwDUx0m43hTCwoEDRdIhlaDiW8IhREz6xw",
+        },
+      ],
+      link: [
+        {
+          rel: "canonical",
+          href: "https://exile-engineer.vercel.app/",
+        },
+      ],
+      script: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            url: "https://exile-engineer.vercel.app/",
+            name: "POE 拓荒攻略季初更新",
+            potentialAction: {
+              "@type": "SearchAction",
+              target:
+                "https://exile-engineer.vercel.app/search?q={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          }),
         },
       ],
     },

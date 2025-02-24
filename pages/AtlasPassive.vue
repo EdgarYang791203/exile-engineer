@@ -46,7 +46,7 @@
           v-for="skill in AtlasPassivePoRecommend"
           :key="skill.skillId"
         >
-          <h2 class="text-white pt-3">{{ skill.title }}</h2>
+          <h3 class="text-white pt-3">{{ skill.title }}</h3>
           <p>
             <NuxtLink
               class="p-3 text-2xl font-bold text-yellow-500"

@@ -1,5 +1,8 @@
 <template>
   <div w="full">
+    <h1 class="h-auto w-full py-4 text-center text-2xl text-yellow-300">
+      POE 拓荒攻略 — 章節流程與昇華流派
+    </h1>
     <div py="4" flex="~ col justify-center" class="custom-container">
       <Chapter
         v-for="chapter in chapterList"
@@ -19,12 +22,13 @@ import Chapter from "~/components/Chapter.vue";
 const initialStore = useInitailStore();
 const { tasks } = storeToRefs(initialStore);
 
-useSeoMeta({
+useHead({
   title: "流亡工程師(Exile engineer) POE 拓荒",
-  ogTitle: "流亡工程師(Exile engineer) POE 拓荒",
-  description: "拓荒 speedrun Exile engineer",
-  ogDescription: "拓荒 speedrun Exile engineer",
-  googleSiteVerification: "9SF0DnY0VkwDUx0m43hTCwoEDRdIhlaDiW8IhREz6xw",
+  meta: [
+    { name: "description", content: "拓荒 speedrun Exile engineer" },
+    { property: "og:title", content: "流亡工程師(Exile engineer) POE 拓荒" },
+    { property: "og:description", content: "拓荒 speedrun Exile engineer" },
+  ],
 });
 
 const cookie = useCookie("doneList");
