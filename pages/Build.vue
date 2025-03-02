@@ -65,7 +65,7 @@
         :class="`cursor-pointer px-5 pb-2 md:pb-0 md:text-2xl ${
           activeChapter === chapter.value ? 'text-yellow-500' : 'text-white'
         }`"
-        @click="selectAct(chapter.value)"
+        @click="selectChapter(chapter.value)"
       >
         {{ chapter.title }}
       </span>
@@ -118,58 +118,70 @@ type Job = {
   ascendancy: Ascendancy[];
 };
 
+// 從 store 取出資料
 const initialStore = useInitailStore();
 const jobs = toRefs(initialStore).jobs as Ref<Job[]>;
 const builds = toRefs(initialStore).builds as Ref<any[]>;
 const copyright = toRefs(initialStore).copyright as Ref<Copyright[]>;
 
+// 定義各個狀態
 const activeJob = ref("");
-
-const selectJob = (jobCode: string) => {
-  if (jobCode) {
-    activeJob.value = jobCode;
-  }
-};
-
-const currentJobData = computed<Job | null>(() => {
-  if (activeJob.value && activeJob.value !== "" && jobs.value.length) {
-    return jobs.value.find((job) => job.code === activeJob.value) || null;
-  }
-  return null;
-});
-
-const showAscendancy = computed(() => {
-  const cb = currentJobData?.value;
-  if (cb && typeof cb === "object" && "ascendancy" in cb) {
-    return (cb as Job).ascendancy;
-  }
-  return [];
-});
-
 const activeAscendancy = ref("");
+const activeChapter = ref("");
 
-const copyrightData = computed(() => {
-  if (activeAscendancy.value && activeAscendancy.value !== "") {
-    return copyright.value[activeAscendancy.value];
+// 使用 cookie 儲存選擇資料
+const cookie = useCookie("selectedData");
+
+// 初始化：若有 cookie，還原選擇資料，否則以 jobs 第一筆資料為預設
+onMounted(() => {
+  if (cookie.value) {
+    try {
+      const { job, ascendancy, chapter } = cookie.value as unknown as {
+        job: string;
+        ascendancy: string;
+        chapter?: string;
+      };
+
+      activeJob.value = job;
+      activeAscendancy.value = ascendancy;
+      if (chapter) {
+        activeChapter.value = chapter;
+      }
+    } catch (error) {
+      console.error("解析 cookie 失敗", error);
+    }
+  } else {
+    activeJob.value = "ranger";
   }
-  return [];
 });
 
-const checkExist = (id: string) => {
-  return builds.value.hasOwnProperty(id);
-};
+// 取得目前選擇的 Job 資料
+const currentJobData = computed(() => {
+  return jobs.value.find((job) => job.code === activeJob.value) || null;
+});
 
-const selectAscendancy = (ascendancyId: string) => {
-  const exist = checkExist(ascendancyId);
-  if (exist) {
-    activeAscendancy.value = ascendancyId;
+// 依據目前 job 取得 ascendancy 清單
+const showAscendancy = computed(() => {
+  return currentJobData.value ? currentJobData.value.ascendancy : [];
+});
+
+// 當 activeJob 改變時，預設選擇第一個 ascendancy
+let initializedJob = ref(true);
+watch(activeJob, (newVal) => {
+  if (initializedJob.value) {
+    initializedJob.value = false;
+    return;
   }
-};
 
+  if (newVal && showAscendancy.value.length > 0) {
+    activeAscendancy.value = showAscendancy.value[0].id;
+  }
+});
+
+// 取得目前選擇的 Build 資料
 const currentBuild = computed(() => {
   if (
     activeAscendancy.value &&
-    activeAscendancy.value !== "" &&
     builds.value.hasOwnProperty(activeAscendancy.value)
   ) {
     return builds.value[activeAscendancy.value];
@@ -177,8 +189,9 @@ const currentBuild = computed(() => {
   return [];
 });
 
+// 顯示章節資料
 const showchapters = computed(() => {
-  if (currentBuild.value && currentBuild.value.length) {
+  if (currentBuild.value && currentBuild.value.length > 0) {
     return currentBuild.value.map((item) => ({
       title: `章節${item.chapter.split(" ")[1]}`,
       value: item.chapter,
@@ -187,12 +200,69 @@ const showchapters = computed(() => {
   return [];
 });
 
-const activeChapter = ref("");
-
-const selectAct = (activeAct: string) => {
-  if (activeAct) {
-    activeChapter.value = activeAct;
+// 當 activeAscendancy 改變時，預設選擇第一個章節
+let initializedAscendancy = ref(true);
+watch(activeAscendancy, () => {
+  if (initializedAscendancy.value) {
+    initializedAscendancy.value = false;
+    return;
   }
+
+  if (showchapters.value.length > 0) {
+    activeChapter.value = showchapters.value[0].value;
+  }
+});
+
+// 統一管理 cookie 更新的資料（只存 job 與 ascendancy，chapter 可選）
+const selectedData = computed(() => {
+  const data: { job: string; ascendancy: string; chapter?: string } = {
+    job: activeJob.value,
+    ascendancy: activeAscendancy.value,
+  };
+  if (activeChapter.value) {
+    data.chapter = activeChapter.value;
+  }
+  return data;
+});
+
+// 當選擇資料改變時，同步更新 cookie
+watch(
+  selectedData,
+  (newData) => {
+    cookie.value = JSON.stringify(newData);
+  },
+  { deep: true }
+);
+
+// 可定義選擇事件，根據需要可直接調用（例如在 template 中）
+const selectJob = (jobCode: string) => {
+  if (jobCode) {
+    activeJob.value = jobCode;
+  }
+};
+
+const selectAscendancy = (ascendancyId: string) => {
+  // 這裡可以根據 builds 存在性做檢查
+  if (ascendancyId) {
+    activeAscendancy.value = ascendancyId;
+  }
+};
+
+const copyrightData = computed(() => {
+  if (activeAscendancy.value && activeAscendancy.value !== "") {
+    return copyright.value[activeAscendancy.value];
+  }
+  return [];
+});
+
+const selectChapter = (chapter: string) => {
+  if (chapter) {
+    activeChapter.value = chapter;
+  }
+};
+
+const checkExist = (id: string) => {
+  return builds.value.hasOwnProperty(id);
 };
 
 const chapterMemo = computed(() => {
@@ -229,22 +299,6 @@ const talentImages = computed(() => {
     }
   }
   return [];
-});
-
-watch(activeJob, (newVal) => {
-  if (showAscendancy.value && showAscendancy.value.length) {
-    activeAscendancy.value = showAscendancy.value[0].id;
-  }
-
-  if (showchapters.value && showchapters.value.length) {
-    activeChapter.value = showchapters.value[0].value;
-  }
-});
-
-watchEffect(() => {
-  if (jobs.value && jobs.value.length && !activeJob.value) {
-    activeJob.value = jobs.value[0].code;
-  }
 });
 </script>
 
