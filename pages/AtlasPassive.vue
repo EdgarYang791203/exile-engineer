@@ -58,9 +58,9 @@
             </NuxtLink>
           </p>
           <NuxtImg
-            v-if="skill.img"
+            v-if="getImgUrl(skill.img) !== ''"
             class="inline-block w-[50vw] cursor-pointer"
-            :src="skill.img"
+            :src="getImgUrl(skill.img)"
             alt="skill"
             @click="imgLink(skill.img)"
           />
@@ -85,31 +85,41 @@ const AtlasPassivePoRecommend: {
     title: "花園人",
     recommend: "資料來源 Yotuber 五边形",
     href: "https://www.youtube.com/watch?v=yh7Vug4xTIE&t=160s",
-    img: "/images/harvest.webp",
+    img: "images/harvest.webp",
     skillId: "harvest-0",
   },
   {
     title: "搭配基拉克賺錢天賦",
     recommend: "資料來源 Yotuber Change",
     href: "https://www.youtube.com/watch?v=eWBsKjQzIOo&t=350s",
-    img: "/images/kirac.webp",
+    img: "images/kirac.webp",
     skillId: "kirac-0",
   },
   {
     title: "新賽季甲蟲洗錢術",
     recommend: "資料來源 Yotuber Howhowgoose 皓皓鵝-遊戲頻道",
     href: "https://www.youtube.com/watch?v=Y2RWvNOARRc",
-    img: "/images/scarabs.webp",
+    img: "images/scarabs.webp",
     skillId: "scarabs-0",
   },
   {
     title: "T17 無腦甲蟲",
     recommend: "資料來源 Yotuber Howhowgoose 皓皓鵝-遊戲頻道",
     href: "https://www.youtube.com/watch?v=8AqvnGx75DY&t=225s",
-    img: "/images/scarabs2.webp",
+    img: "images/scarabs2.webp",
     skillId: "scarabs-1",
   },
 ]);
+
+const { serverImages } = useFirebaseImages();
+
+const getImgUrl = computed(() => (img: string) => {
+  if (img && serverImages.value) {
+    const urlArray = serverImages.value[img];
+    if (urlArray) return urlArray[0];
+  }
+  return "/images/map-placeholder.webp";
+});
 
 const cookie = useCookie("passives");
 

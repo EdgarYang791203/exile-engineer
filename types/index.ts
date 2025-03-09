@@ -1,3 +1,9 @@
+import type { FirebaseStorage } from "firebase/storage";
+
+export interface ServerImages {
+  [key: string]: string[];
+}
+
 export type CheckItem = {
   id: number;
   name: string;
@@ -29,4 +35,10 @@ export interface Chapter {
 
 interface Window {
   MSStream?: any;
+}
+
+declare module "#app/nuxt" {
+  interface NuxtApp {
+    $firebaseStore: FirebaseStorage;
+  }
 }

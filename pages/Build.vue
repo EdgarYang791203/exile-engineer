@@ -10,7 +10,7 @@
         @click="selectJob(job.code)"
       >
         <NuxtImg
-          :src="`/images/jobs/${job.code}.png`"
+          :src="getImgUrl(`jobs/${job.code}.png`)"
           alt="jobs"
           class="w-24 h-24"
           :class="{
@@ -39,7 +39,7 @@
           @click="selectAscendancy(ascendancy.id)"
         >
           <NuxtImg
-            :src="ascendancy.img"
+            :src="getImgUrl(ascendancy.img)"
             alt="ascendancy"
             class="w-24 h-auto"
             :class="{
@@ -78,6 +78,7 @@
           :chapterMemo="chapterMemo"
           :talentImages="talentImages"
           :chapter="activeChapter"
+          :getImgUrl="getImgUrl"
         />
         <div
           class="py-4 text-center text-xl"
@@ -131,6 +132,19 @@ const activeChapter = ref("");
 
 // 使用 cookie 儲存選擇資料
 const cookie = useCookie("selectedData");
+
+// 初始化圖片資料
+const { serverImages } = useFirebaseImages();
+
+const getImgUrl = computed<(img: string, placeholder?: string) => string>(
+  () => (img: string, placeholder?: string) => {
+    if (img && serverImages.value) {
+      const urlArray = serverImages.value[img];
+      if (urlArray) return urlArray[0];
+    }
+    return placeholder ? placeholder : "/images/poe-placeholder.png";
+  }
+);
 
 // 初始化：若有 cookie，還原選擇資料，否則以 jobs 第一筆資料為預設
 onMounted(() => {
