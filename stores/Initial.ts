@@ -36,26 +36,12 @@ type Branch = {
 };
 
 export const useInitailStore = defineStore("initial", () => {
-  // const config = useRuntimeConfig();
-
-  // const { jsonStorageUrl } = config.public;
-
   const branchData = ref<Branch>({
     builds: [],
     jobs: [],
     tasks: [],
     copyright: [],
   });
-
-  // const tasks = ref([]);
-
-  // const fetchTasks = async () => {
-  //   const res = await fetch(jsonStorageUrl);
-  //   const data = await res.json();
-  //   if (data.tasks) {
-  //     tasks.value = fotmatTasks(data.tasks);
-  //   }
-  // };
 
   const builds = computed(() => branchData.value.builds);
 

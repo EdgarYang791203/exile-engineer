@@ -23,7 +23,7 @@
         class="block mt-4 w-full max-w-[100%] h-auto"
         v-for="img in talentImages"
         :key="img.src"
-        :src="img.src"
+        :src="getImgUrl(img.src, '/images/map-placeholder.webp')"
         :style="img.style ? img.style : {}"
         alt="talent"
       />
@@ -37,6 +37,7 @@ const props = defineProps<{
   chapterMemo: any[];
   talentImages: any[];
   chapter: string;
+  getImgUrl: (src: string, placeholder?: string) => string;
 }>();
 
 const contentFormat = computed(() => {

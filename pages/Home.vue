@@ -76,7 +76,7 @@ const checkAll = (chapterId: number) => {
   }
 };
 
-onMounted(async () => {
+onMounted(() => {
   if (cookie?.value) {
     const saveData = cookie.value.split(",");
     doneList.value = saveData;
