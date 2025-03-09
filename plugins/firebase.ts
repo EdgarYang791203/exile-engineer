@@ -20,7 +20,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     const config = useRuntimeConfig().public;
 
     const firebaseConfig: FirebaseConfig = {
-      apiKey: config.apiKey as string as string,
+      apiKey: config.apiKey as string,
       authDomain: config.authDomain as string,
       projectId: config.projectId as string,
       storageBucket: config.storageBucket as string,
@@ -28,6 +28,11 @@ export default defineNuxtPlugin((nuxtApp) => {
       appId: config.appId as string,
       measurementId: config.measurementId as string,
     };
+
+    if (import.meta.env.DEV) {
+      // 這邊的程式碼只會在開發模式下執行
+      console.log(firebaseConfig);
+    }
 
     if (!getApps().length) {
       try {
